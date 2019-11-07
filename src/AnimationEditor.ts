@@ -3,10 +3,10 @@ export default class AnimationEditor {
     private updateArr: AnimationObj[] = []
     private animationID: number | null = null 
     private time: Time = {
-        sum: 0,
         old: null,
         now: null,
-        diff: 0
+        diff: 0,
+        sum: 0
     }
     public add = (name: string, func: Function): void => {
         let anmObj: AnimationObj = {
@@ -21,14 +21,14 @@ export default class AnimationEditor {
         }
     }
     private update = (): void => {
-        // TODO: sum, diff が0になる
         this.time.now = new Date()
-        this.time.diff = this.time.old === null ? 0 : (this.time.now.getDate() - this.time.old.getDate())
+        console.log(`this.time.now: ${this.time.now}`)
+        console.log(`this.time.old: ${this.time.old}`)
+        this.time.diff = this.time.old === null ? 0 : (this.time.now.getTime() - this.time.old.getTime())
         this.time.sum += this.time.diff
         this.time.old = this.time.now
         for (let i = 0; i < this.updateArr.length; i++) {
             this.updateArr[i].func(this.time)
-            console.log(this.time)
         }
     }
     public start = (): void => {
