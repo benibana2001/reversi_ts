@@ -3,6 +3,7 @@ import { CanvasObj, Time } from './Util'
 import CanvasEditor from './CanvasEditor'
 import GameBaseEditor from './GameBaseEditor'
 import AnimationEditor from './AnimationEditor'
+import ResourceManager from './ResourceManager'
 
 let id: string = 'reversi'
 
@@ -29,5 +30,24 @@ animationEditor.add("rct02", (time: Time) => {
         c.w * 0.15, c.h * 0.15);
 })
 animationEditor.start()
-setTimeout(()=> {animationEditor.remove("rct02")}, 1000)
-setTimeout(()=> {animationEditor.stop()}, 2000)
+setTimeout(() => { animationEditor.remove("rct02") }, 1000)
+setTimeout(() => { animationEditor.stop() }, 2000)
+
+let rm: ResourceManager = new ResourceManager()
+let r: Promise<any>[] = []
+r.push(rm.load("_tkn0", "img/icon_menherachan04_28.jpg"))
+r.push(rm.load("_tkn1", "img/icon_menherachan04_25.jpg"));
+
+(async(): Promise<any> => {
+    await paralle()
+    let imgs: {name: HTMLImageElement}[] = rm.imgs
+    for (let key in imgs) {
+        let elBody = document.body
+        let elImg = document.createElement('img')
+        elImg.src = imgs[key]
+    }
+})()
+
+let paralle = async (): Promise<any> => {
+    await Promise.all(r)
+}
