@@ -1,5 +1,5 @@
 import './scss/style.scss'
-import { CanvasObj, Time } from './Util'
+import { CanvasObj, Time, ResourceImage } from './Util'
 import CanvasEditor from './CanvasEditor'
 import GameBaseEditor from './GameBaseEditor'
 import AnimationEditor from './AnimationEditor'
@@ -12,7 +12,7 @@ const gameBase: GameBaseEditor = new GameBaseEditor()
 const animationEditor: AnimationEditor = new AnimationEditor()
 let sz: { w: number, h: number } = gameBase.getFitSz(10, 11)
 let c: CanvasObj = canvasManager.initCanvas(id, sz.w, sz.h, null)
-
+/*
 animationEditor.add("bg", (time: Time) => {
     c.context.fillStyle = "#faa"
     c.context.fillRect(0, 0, c.w, c.h)
@@ -32,22 +32,28 @@ animationEditor.add("rct02", (time: Time) => {
 animationEditor.start()
 setTimeout(() => { animationEditor.remove("rct02") }, 1000)
 setTimeout(() => { animationEditor.stop() }, 2000)
+*/
 
+// TODO: webpack 画像のバインディング
 let rm: ResourceManager = new ResourceManager()
 let r: Promise<any>[] = []
-r.push(rm.load("_tkn0", "img/icon_menherachan04_28.jpg"))
-r.push(rm.load("_tkn1", "img/icon_menherachan04_25.jpg"));
+r.push(rm.load("tkn0", "./img/icon_menherachan04_28.jpg"))
+r.push(rm.load("tkn1", "./img/icon_menherachan04_25.jpg"));
+console.log(r)
 
-(async(): Promise<any> => {
-    await paralle()
-    let imgs: {name: HTMLImageElement}[] = rm.imgs
-    for (let key in imgs) {
+let parallel = async (): Promise<any> => {
+    await Promise.all(r)
+    console.log(r)
+}
+
+(async (): Promise<any> => {
+    await parallel()
+    for (let key in rm.imgs) {
         let elBody = document.body
-        let elImg = document.createElement('img')
-        elImg.src = imgs[key]
+        let elImg: HTMLImageElement = document.createElement('img');
+        elImg.src = rm.imgs[key].src
+        elBody.appendChild(elImg)
     }
+
 })()
 
-let paralle = async (): Promise<any> => {
-    await Promise.all(r)
-}

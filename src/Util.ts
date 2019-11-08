@@ -1,4 +1,4 @@
-export { CanvasObj, AnimationObj, Time }
+export { CanvasObj, AnimationObj, Time, ResourceImage }
 interface CanvasObj {
     canvas: HTMLCanvasElement,
     context: CanvasRenderingContext2D
@@ -16,4 +16,9 @@ interface Time {
     old: Date | null,
     now: Date | null,
     diff: number | null
+}
+
+interface ResourceImage {
+    elem: HTMLImageElement,
+    src: string
 }
