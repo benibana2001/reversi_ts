@@ -14,7 +14,7 @@ const canvasManager: CanvasEditor = new CanvasEditor()
 const gameBase: GameBaseEditor = new GameBaseEditor()
 const animationEditor: AnimationEditor = new AnimationEditor()
 let sz: { w: number, h: number } = gameBase.getFitSz(10, 11)
-let c: CanvasObj = canvasManager.initCanvas(id, sz.w, sz.h, null)
+// let c: CanvasObj = canvasManager.initCanvas(id, sz.w, sz.h, null)
 /*
 animationEditor.add("bg", (time: Time) => {
     c.context.fillStyle = "#faa"
@@ -46,17 +46,17 @@ console.log(r)
 
 let parallel = async (): Promise<any> => {
     await Promise.all(r)
-    console.log(r)
 }
 
 (async (): Promise<any> => {
     await parallel()
+    console.log("Load image DONE")
     for (let key in rm.imgs) {
-        let elBody = document.body
+        // let elBody = document.body
+        let elReversi = document.getElementById('reversi')
         let elImg: HTMLImageElement = document.createElement('img');
         elImg.src = rm.imgs[key].src
-        elBody.appendChild(elImg)
+        elReversi.appendChild(elImg)
     }
-
 })()
 
