@@ -12,6 +12,9 @@
       ],
       "base64-js": [
         "types/base64-js"
+      ],
+      "import-mp3": [
+        "types/import-mp3"
       ]
     },
     "typeRoots": [

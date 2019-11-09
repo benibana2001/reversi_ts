@@ -39,12 +39,18 @@ export default class ResourceManager {
                     seNow: null
                 }
                 sound.audio.preload = "auto"
-                sound.audio.src = url + ".mp3"
+                sound.audio.src = url
                 this.sounds[name] = sound
 
                 this.sounds[name].audio.addEventListener("canplaythrough", () => {
                     console.log(`load sound: ${name}`)
                     resolve()
+                })
+
+                this.sounds[name].audio.addEventListener("error", (e) => {
+                    console.log(`err sound: ${name}`)
+                    console.log(e)
+                    reject()
                 })
             }
         )

@@ -61,8 +61,9 @@ let parallel = async (): Promise<any> => {
 })();
 
 let ra: Promise<any>[] = []
-ra.push(rm.loadAudio("bgm01", "snd/Jigsaw_Puzzle.mp3"));
+ra.push(rm.loadAudio("bgm01", bgm01));
 console.log(ra)
+console.log(bgm01)
 
 let parallesAudio = async():Promise<any> => {
     console.log("wait audio loading")

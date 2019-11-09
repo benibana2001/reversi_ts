@@ -77,7 +77,8 @@ module.exports = {
 				loader: "html-loader"
 			},
 			{
-				test: /\.(png|svg|jpg|gif)$/,
+				// test: /\.(png|svg|jpg|gif)$/,
+				test: /\.jpg$/,
 				include: [path.resolve(__dirname, 'src')],
 				use: [
 					{
@@ -86,18 +87,23 @@ module.exports = {
 							// limit: 20000,
 							name: '[name].[ext]'
 						}
-					},
+					}
 					// {
 					// 	loader: 'url-loader',
 					// }
 				],
 			},
 			{
-				test: /\.(ogg|mp3|wav|mpe?g)$/i,
-				loader: 'file-loader',
-				options: {
-					name: '[name].[ext]'
-				}
+				test: /\.mp3$/,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].[ext]'
+						}
+
+					}
+				],
 			}
 		]
 	},
