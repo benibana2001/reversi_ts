@@ -70,4 +70,7 @@ export default class ResourceManager {
         // Audioの使用可否をチェック
         // 
     }
+    public playAudio = (name: string) => {
+        this.sounds[name].audio.play()
+    }
 }

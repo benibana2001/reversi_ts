@@ -70,7 +70,18 @@ let parallesAudio = async():Promise<any> => {
     await Promise.all(ra)
 }
 
+let createBtn = (name: string, cb: Function): void => {
+    let elBtn: HTMLButtonElement | null = document.createElement('button')
+    let parent: HTMLElement = document.body
+    elBtn.textContent = name
+    elBtn.addEventListener('click', ()=> {cb()})
+    parent.appendChild(elBtn)
+}
+
 (async(): Promise<any> => {
     await parallesAudio()
     console.log("Load audio DONE")
+    createBtn("Start", ()=> {
+        rm.playAudio("bgm01")
+    })
 })();
