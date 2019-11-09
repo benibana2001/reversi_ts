@@ -1,7 +1,8 @@
-import { ResourceImage } from './Util'
+import { ResourceImage, ResourceSound } from './Util'
 import { resolve } from 'dns'
 export default class ResourceManager {
     public imgs: { [key: string]: ResourceImage } = {}
+    public sounds: { [key: string]: ResourceSound } = {}
     public loadImage = (name: string, url: string): Promise<boolean> => {
         let func = (resolve: Function, reject: Function) => {
             let image: ResourceImage = {
@@ -24,7 +25,7 @@ export default class ResourceManager {
         this.initAudio()
         if (type === 'se') {
             await this.loadAudioSE(name, url)
-        }else {
+        } else {
             await this.loadAudioBGM(name, url)
         }
     }
@@ -33,12 +34,24 @@ export default class ResourceManager {
         return new Promise(
             (resolve: Function, reject: Function) => {
                 console.log(name, url)
-                resolve()
+                let sound: ResourceSound = {
+                    audio: new Audio(""),
+                    seNow: null
+                }
+                sound.audio.preload = "auto"
+                sound.audio.src = url + ".mp3"
+                this.sounds[name] = sound
+
+                this.sounds[name].audio.addEventListener("canplaythrough", () => {
+                    console.log(`load sound: ${name}`)
+                    resolve()
+                })
             }
         )
     }
     private loadAudioSE = async (name: string, url: string): Promise<any> => {
         // not implmented yet
+        // SEの場合は、SEが重複再生可能なように複数読み込んでおく
         return new Promise(
             (resolve: Function, reject: Function) => {
                 console.log(name, url)
@@ -48,5 +61,7 @@ export default class ResourceManager {
     }
     private initAudio = () => {
         // not implmented yet
+        // Audioの使用可否をチェック
+        // 
     }
 }

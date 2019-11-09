@@ -1,4 +1,4 @@
-export { CanvasObj, AnimationObj, Time, ResourceImage }
+export { CanvasObj, AnimationObj, Time, ResourceImage, ResourceSound }
 interface CanvasObj {
     canvas: HTMLCanvasElement,
     context: CanvasRenderingContext2D
@@ -21,4 +21,9 @@ interface Time {
 interface ResourceImage {
     elem: HTMLImageElement,
     src: string
+}
+
+interface ResourceSound {
+    audio: HTMLAudioElement | null,
+    seNow: number | null
 }

@@ -7,7 +7,8 @@ import ResourceManager from './ResourceManager'
 
 import tkn0 from './img/icon_menherachan04_28.jpg'
 import tkn1 from './img/icon_menherachan04_25.jpg'
-
+import bgm01 from './snd/Jigsaw_Puzzle.mp3'
+// TODO: 型定義ファイルを配置
 let id: string = 'reversi'
 
 const canvasManager: CanvasEditor = new CanvasEditor()
@@ -60,7 +61,7 @@ let parallel = async (): Promise<any> => {
 })();
 
 let ra: Promise<any>[] = []
-ra.push(rm.loadAudio("abc", "def"));
+ra.push(rm.loadAudio("bgm01", "snd/Jigsaw_Puzzle.mp3"));
 console.log(ra)
 
 let parallesAudio = async():Promise<any> => {
