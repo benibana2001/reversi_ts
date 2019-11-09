@@ -5,8 +5,8 @@ import GameBaseEditor from './GameBaseEditor'
 import AnimationEditor from './AnimationEditor'
 import ResourceManager from './ResourceManager'
 
-import tkn0 from './img/icon_menherachan04_28'
-import tkn1 from './img/icon_menherachan04_25'
+import tkn0 from './img/icon_menherachan04_28.jpg'
+import tkn1 from './img/icon_menherachan04_25.jpg'
 
 let id: string = 'reversi'
 
