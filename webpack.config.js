@@ -30,7 +30,6 @@ module.exports = {
 	// entry: './src/test_stone.ts',
 	entry: {
 		index: './src/index.ts',
-		// test: './src/test.ts',
 		test_resource: './src/test_resource.ts',
 		test_stone: './src/test_stone.ts'
 	},
