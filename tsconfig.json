@@ -9,11 +9,14 @@
     "paths": {
       "import-jpg": [
         "types/import-jpg"
+      ],
+      "base64-js": [
+        "types/base64-js"
       ]
     },
     "typeRoots": [
       "types",
       "node_modules/@types"
-    ],
+    ]
   }
 }

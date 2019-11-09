@@ -30,7 +30,7 @@ module.exports = {
 	entry: './src/index.ts',
 
 	output: {
-		filename: '[name].[chunkhash].js',
+		filename: 'main.js',
 		path: path.resolve(__dirname, 'dist')
 	},
 
@@ -80,7 +80,16 @@ module.exports = {
 				test: /\.(png|svg|jpg|gif)$/,
 				include: [path.resolve(__dirname, 'src')],
 				use: [
-					'file-loader',
+					{
+						loader: 'file-loader',
+						options: {
+							// limit: 20000,
+							name: '[name].[ext]'
+						}
+					},
+					// {
+					// 	loader: 'url-loader',
+					// }
 				],
 			},
 		]
