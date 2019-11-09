@@ -13,8 +13,7 @@ let id: string = 'reversi'
 const canvasManager: CanvasEditor = new CanvasEditor()
 const gameBase: GameBaseEditor = new GameBaseEditor()
 const animationEditor: AnimationEditor = new AnimationEditor()
-
-let rm: ResourceManager = new ResourceManager()
+const rm: ResourceManager = new ResourceManager()
 let r: Promise<any>[] = []
 r.push(rm.loadImage("tkn0", tkn0))
 r.push(rm.loadImage("tkn1", tkn1))
@@ -25,7 +24,6 @@ let parallel = async (): Promise<any> => {
 
 (async (): Promise<any> => {
     await parallel()
-    console.log("Load image DONE")
     let elReversi = document.getElementById('reversi')
     for (let key in rm.imgs) {
         // let elBody = document.body
@@ -33,4 +31,7 @@ let parallel = async (): Promise<any> => {
         elImg.src = rm.imgs[key].src
         elReversi.appendChild(elImg)
     }
+
+
+
 })();
