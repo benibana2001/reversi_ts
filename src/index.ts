@@ -40,9 +40,8 @@ setTimeout(() => { animationEditor.stop() }, 2000)
 // TODO: webpack 画像のバインディング
 let rm: ResourceManager = new ResourceManager()
 let r: Promise<any>[] = []
-r.push(rm.load("tkn0", tkn0))
-r.push(rm.load("tkn1", tkn1));
-console.log(r)
+r.push(rm.loadImage("tkn0", tkn0))
+r.push(rm.loadImage("tkn1", tkn1));
 
 let parallel = async (): Promise<any> => {
     await Promise.all(r)
@@ -58,5 +57,18 @@ let parallel = async (): Promise<any> => {
         elImg.src = rm.imgs[key].src
         elReversi.appendChild(elImg)
     }
-})()
+})();
 
+let ra: Promise<any>[] = []
+ra.push(rm.loadAudio("abc", "def"));
+console.log(ra)
+
+let parallesAudio = async():Promise<any> => {
+    console.log("wait audio loading")
+    await Promise.all(ra)
+}
+
+(async(): Promise<any> => {
+    await parallesAudio()
+    console.log("Load audio DONE")
+})();
