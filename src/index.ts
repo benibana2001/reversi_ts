@@ -5,6 +5,9 @@ import GameBaseEditor from './GameBaseEditor'
 import AnimationEditor from './AnimationEditor'
 import ResourceManager from './ResourceManager'
 
+import tkn0 from './img/icon_menherachan04_28'
+import tkn1 from './img/icon_menherachan04_25'
+
 let id: string = 'reversi'
 
 const canvasManager: CanvasEditor = new CanvasEditor()
@@ -37,8 +40,8 @@ setTimeout(() => { animationEditor.stop() }, 2000)
 // TODO: webpack 画像のバインディング
 let rm: ResourceManager = new ResourceManager()
 let r: Promise<any>[] = []
-r.push(rm.load("tkn0", "./img/icon_menherachan04_28.jpg"))
-r.push(rm.load("tkn1", "./img/icon_menherachan04_25.jpg"));
+r.push(rm.load("tkn0", tkn0))
+r.push(rm.load("tkn1", tkn1));
 console.log(r)
 
 let parallel = async (): Promise<any> => {

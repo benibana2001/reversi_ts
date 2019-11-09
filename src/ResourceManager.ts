@@ -6,7 +6,7 @@ export default class ResourceManager {
             console.log(name)
             let image: ResourceImage = {
                 elem: new Image(),
-                src: url
+                src: url//TODO: 使わない
             }
             this.imgs[name] = image
             this.imgs[name].elem.src = url

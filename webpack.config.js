@@ -75,7 +75,14 @@ module.exports = {
 				test: /\.html$/,
 				include: [path.resolve(__dirname, 'src')],
 				loader: "html-loader"
-			}
+			},
+			{
+				test: /\.(png|svg|jpg|gif)$/,
+				include: [path.resolve(__dirname, 'src')],
+				use: [
+					'file-loader',
+				],
+			},
 		]
 	},
 
