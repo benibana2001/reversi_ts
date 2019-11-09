@@ -27,18 +27,42 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
-	entry: './src/index.ts',
+	// entry: './src/test_stone.ts',
+	entry: {
+		index: './src/index.ts',
+		// test: './src/test.ts',
+		test_resource: './src/test_resource.ts',
+		test_stone: './src/test_stone.ts'
+	},
 
 	output: {
-		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist')
+		// filename: 'main.js',
+		// path: path.resolve(__dirname, 'dist')
+		path: path.join(__dirname, 'dist'),
+		publicPath: '/',
+		filename: '[name].js',
 	},
 
 	plugins: [
 		new webpack.ProgressPlugin(),
 		new HtmlWebpackPlugin(
 			{
-				template: './src/html/index.html'
+				template: './src/html/index.html',
+				chunks: ['index']
+			}
+		),
+		new HtmlWebpackPlugin(
+			{
+				filename: 'test_resource.html',
+				template: './src/html/index.html',
+				chunks: ['test_resource']
+			}
+		),
+		new HtmlWebpackPlugin(
+			{
+				filename: 'test_stone.html',
+				template: './src/html/index.html',
+				chunks: ['test_stone']
 			}
 		)
 	],
