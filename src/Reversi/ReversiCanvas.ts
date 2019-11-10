@@ -71,7 +71,7 @@ export default class ReversiCanvas {
     }
 
     public drowSquareAll = (): void => {
-        this.context.fillStyle = "#000"
+        this.context.fillStyle = "#0000ee"
         this.ce.fillMarginRect(this.context, this.layout.boardX, this.layout.boardY, this.layout.boardW, this.layout.boardH, -2)
         this.rMain.scanBoard((i: number, x: number, y: number) => {
             this.drowSquare(x, y)
@@ -86,22 +86,28 @@ export default class ReversiCanvas {
         this.context.fillStyle = "#000"
         this.context.fillRect(r.x, r.y, this.squareSize, this.squareSize)
         //
-        this.context.fillStyle = "#ffb900"
+        // this.context.fillStyle = "#ffb900"
+        this.context.fillStyle = "#1e90ff"
         this.ce.fillMarginRect(this.context, r.x, r.y, this.squareSize, this.squareSize, marginOut)
         //
-        this.context.fillStyle = "#fff05b"
+        // this.context.fillStyle = "#fff05b"
+        this.context.fillStyle = "#1e90ff"
         this.ce.fillMarginRect(this.context, r.x, r.y, this.squareSize - marginIn, this.squareSize - marginIn, marginOut)
         //
-        this.context.fillStyle = "#086319"
+        // this.context.fillStyle = "#086319"
+        this.context.fillStyle = "#aacdff"
         let rect: any = this.ce.fillMarginRect(this.context, r.x, r.y, this.squareSize, this.squareSize, marginOut + marginIn)
         let w: any = rect.w
         let h: any = rect.h
-        
     }
 
     private xyToReal = (x: number, y: number): any => {
         let realX: number = this.layout.boardX + this.squareSize * x
         let realY: number = this.layout.boardY + this.squareSize * y
         return { x: realX, y: realY }
+    }
+
+    public resizeToken = (): void => {
+        
     }
 }
