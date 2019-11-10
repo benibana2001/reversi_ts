@@ -29,6 +29,7 @@ export default class ReversiCanvas {
     public initCanvas = (): void => {
         this.initCanvasObject()
         this.initCanvasLayout()
+        this.drowBackground()
     }
 
     private initCanvasObject = (): void => {
@@ -56,5 +57,14 @@ export default class ReversiCanvas {
         this.layout.fontSize = this.layout.squareSize * 0.9
         //
         this.squareSize = this.layout.squareSize
+    }
+
+    public drowBackground = (): void => {
+        this.context.fillStyle = "#afa";
+        this.context.fillRect(0, 0, this.canvas.w, this.canvas.h)
+    }
+
+    public drowSquare = (x: number, y: number) => {
+        // TODO: implement
     }
 }

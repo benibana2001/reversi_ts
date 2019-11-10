@@ -25,4 +25,15 @@ export default class CanvasEditor {
         elem.appendChild(c.canvas)
         return c
     }
+
+    public fillMarginRect = (context: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, m: number): any => {
+        let rect: any = {
+            x: x + m,
+            y: y + m,
+            w: w - m * 2,
+            h: h - m * 2
+        }
+        context.fillRect(rect.x, rect.y, rect.w, rect.h)
+        return rect
+    }
 }
