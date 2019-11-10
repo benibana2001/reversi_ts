@@ -60,7 +60,7 @@ module.exports = {
 		new HtmlWebpackPlugin(
 			{
 				filename: 'test_stone.html',
-				template: './src/html/index.html',
+				// template: './src/html/index.html',
 				chunks: ['test_stone']
 			}
 		)

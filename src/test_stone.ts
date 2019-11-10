@@ -16,6 +16,13 @@ const animationEditor: AnimationEditor = new AnimationEditor()
 const rm: ResourceManager = new ResourceManager()
 const rc: ReversiCanvas = new ReversiCanvas()
 let r: Promise<any>[] = []
+
+let body: HTMLElement = document.body
+let elem: HTMLElement = document.createElement('div')
+elem.setAttribute('id', 'reversi')
+body.appendChild(elem)
+
+
 r.push(rm.loadImage("tkn0", tkn0))
 r.push(rm.loadImage("tkn1", tkn1))
 

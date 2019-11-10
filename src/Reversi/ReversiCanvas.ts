@@ -48,8 +48,12 @@ export default class ReversiCanvas {
         this.layout.boardW = this.layout.squareSize * this.rMain.w
         this.layout.boardH = this.layout.squareSize * this.rMain.h
         // 版の位置 左上すみをベースに計算
-        this.layout.boardX = ((this.canvas.w = this.layout.boardW) / 2) | 0
+        this.layout.boardX = ((this.canvas.w - this.layout.boardW) / 2) | 0
         this.layout.boardY = this.layout.squareSize * 2// PlayerScore表示のために少し下げる
+        console.log(`this.layout.boardW: ${this.layout.boardW}`)
+        console.log(`this.layout.boardH: ${this.layout.boardH}`)
+        console.log(`this.layout.boardX: ${this.layout.boardX}`)
+        console.log(`this.layout.boardY: ${this.layout.boardY}`)
         // 
         this.layout.playerScore[0].x = this.layout.boardX
         this.layout.playerScore[1].x = this.layout.boardX + this.layout.boardW
