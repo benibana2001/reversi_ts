@@ -31,7 +31,15 @@ let parallel = async (): Promise<any> => {
         elImg.src = rm.imgs[key].src
         elReversi.appendChild(elImg)
     }
+    // キャンパスの初期化
 
+    // 背景の描画
+
+    // マスを描画
+
+    // トークンを初期化
+
+    // トークンの配置
 
 
 })();
