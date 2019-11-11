@@ -19,8 +19,8 @@ export default class ReversiCanvas {
         boardX: 0, boardY: 0,
         boardW: 0, boardH: 0,
         playerScore: [
-            {x: 0, y: 0, w: 0, align: "left"},// Player 1
-            {x: 0, y: 0, w: 0, align: "right"}// Player 2
+            { x: 0, y: 0, w: 0, align: "left" },// Player 1
+            { x: 0, y: 0, w: 0, align: "right" }// Player 2
         ],
         fontSize: 0,
         fontFamily: 'meiryo'
@@ -50,10 +50,10 @@ export default class ReversiCanvas {
         // 版の位置 左上すみをベースに計算
         this.layout.boardX = ((this.canvas.w - this.layout.boardW) / 2) | 0
         this.layout.boardY = this.layout.squareSize * 2// PlayerScore表示のために少し下げる
-        console.log(`this.layout.boardW: ${this.layout.boardW}`)
-        console.log(`this.layout.boardH: ${this.layout.boardH}`)
-        console.log(`this.layout.boardX: ${this.layout.boardX}`)
-        console.log(`this.layout.boardY: ${this.layout.boardY}`)
+        // console.log(`this.layout.boardW: ${this.layout.boardW}`)
+        // console.log(`this.layout.boardH: ${this.layout.boardH}`)
+        // console.log(`this.layout.boardX: ${this.layout.boardX}`)
+        // console.log(`this.layout.boardY: ${this.layout.boardY}`)
         // 
         this.layout.playerScore[0].x = this.layout.boardX
         this.layout.playerScore[1].x = this.layout.boardX + this.layout.boardW
@@ -110,9 +110,18 @@ export default class ReversiCanvas {
     public resizeToken = (): void => {
         for (let i = 0; i < 2; i++) {
             let token = this.mr.imgs["tkn" + i]
+            console.log(this.mr.imgs)
+            console.log(token)
             this.mr.imgs["tkn" + i] = this.ec.getScaledImg(
                 token, 0, 0, token.elem.width, token.elem.height, this.squareSize, this.squareSize
             )
         }
+    }
+
+    public drawToken = (x: number, y: number, p: number) => {// p: EachPlayer
+        if (p < 0 || 1 < p) return
+        //
+        let r = this.xyToReal(x, y)
+        this.context.drawImage(this.mr.imgs["tkn" + p].elem, r.x, r.y)
     }
 }

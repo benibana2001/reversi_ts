@@ -44,8 +44,11 @@ let parallel = async (): Promise<any> => {
     // マスを描画
     rc.drowSquareAll()
     // トークンを初期化
-
+    rc.resizeToken()
     // トークンの配置
-
+    rc.drawToken(3, 3, 0)
+    rc.drawToken(4, 4, 0)
+    rc.drawToken(3, 4, 1)
+    rc.drawToken(4, 3, 1)
 
 })();

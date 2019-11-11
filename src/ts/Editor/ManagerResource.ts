@@ -15,6 +15,7 @@ export default class ManagerResource {
             this.imgs[name].elem.onload = (() => {
                 let msg: string = `DONE Loading: ${name}`
                 console.log(msg)
+                console.log(this.imgs[name].elem.width)
                 resolve(true)
             })
         }
