@@ -1,5 +1,5 @@
 import './scss/style.scss'
-import { CanvasObj, Time, ResourceImage } from './ts/Util'
+import { CanvasObj, Time } from './ts/Util'
 import EditorCanvas from './ts/Editor/EditorCanvas'
 import EditorGameBase from './ts/Editor/EditorGameBase'
 import EditorAnimation from './ts/Editor/EditorAnimation'

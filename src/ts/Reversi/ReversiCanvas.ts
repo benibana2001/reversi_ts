@@ -2,7 +2,7 @@ import EditorCanvas from '../Editor/EditorCanvas'
 import EditorGameBase from '../Editor/EditorGameBase'
 import EditorAnimation from '../Editor/EditorAnimation'
 import ResourceManager from '../ResourceManager/ResourceManager'
-import { CanvasObj } from 'src/ts/Util'
+import { CanvasObj} from 'src/ts/Util'
 import ReversiMain from './ReversiMain'
 
 export default class ReversiCanvas {
@@ -116,7 +116,7 @@ export default class ReversiCanvas {
             let token = this.rm.imgs["tkn" + i]
             console.log(`token: ${token}`)
             this.rm.imgs["tkn" + i] = this.ec.getScaledImg(
-                token.elem, 0, 0, token.elem.width, token.elem.height, this.squareSize, this.squareSize
+                token, 0, 0, token.width, token.height, this.squareSize, this.squareSize
             )
         }
     }
@@ -125,12 +125,8 @@ export default class ReversiCanvas {
         if (p < 0 || 1 < p) return
         //
         let r = this.xyToReal(x, y)
-        console.log(`this.rm.imgs: ${this.rm.imgs}`)
-        // console.log(this.rm.imgs)
-        // console.log(this.rm.imgs['tkn0'])
-        console.log(this.rm.imgs["tkn" + p])
-        // console.log(this.rm.imgs["'tkn' + p"])
-
+        // console.log(this.rm.imgs["tkn" + p].elem) => undefinedになる
+        console.log(this.rm.imgs)
         this.context.drawImage(this.rm.imgs["tkn" + p], r.x, r.y)
     }
 }

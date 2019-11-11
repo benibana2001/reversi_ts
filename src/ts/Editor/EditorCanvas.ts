@@ -38,11 +38,10 @@ export default class EditorCanvas {
     }
 
     // 元画像 s, 作る画像 d (cf: http://www.htmq.com/canvas/drawImage_s.shtml)
-    public getScaledImg = (image:HTMLImageElement, sx: number, sy: number, sw: number, sh: number, dw: number, dh: number): any => {
+    public getScaledImg = (image:HTMLElement, sx: number, sy: number, sw: number, sh: number, dw: number, dh: number): any => {
         let ratioX: number = dw / sw
         let ratioY: number = dh / sh
         let imgElem: HTMLImageElement = <HTMLImageElement>image
-        console.log(`imgElem: ${imgElem}`)
         // 50%以下に圧縮する際は画像が荒れるので、段階的に圧縮をかける
         if (ratioX >= 0.5 && ratioY >= 0.5) {
             let c = this.generateCanvas(dw, dh)
