@@ -1,4 +1,5 @@
-import { ResourceSound } from '../Util'
+import { ResourceSound, CanvasObj } from '../Util'
+import EditorCanvas from '../Editor/EditorCanvas'
 export default class ResourceManager {
     public imgs: { [key: string]: HTMLImageElement } = {}
     public sounds: { [key: string]: ResourceSound } = {}
@@ -13,6 +14,20 @@ export default class ResourceManager {
             })
         }
         return new Promise(func)
+    }
+
+    public loadFont = (font: string): Promise<any> => {
+        let ec: EditorCanvas = new EditorCanvas()
+        let c: CanvasObj = ec.generateCanvas(1, 1)
+        // let tryCount: number = 0
+        // let tryMax: number = 30
+        // let checkText: string = "abcdefg"
+        //
+        return new Promise((resolve: Function, reject: Function) => {
+            c.context.font = "32px " + font
+            // let mt1: number = c.context.measureText(checkText).width
+            resolve()
+        })
     }
 
     public loadAudio = async (name: string, url: string, type: string = 'bgm'): Promise<any> => {

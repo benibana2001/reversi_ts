@@ -1,7 +1,7 @@
 import { CanvasObj } from '../Util'
 export default class EditorCanvas {
     private _scale: number = 1
-    private generateCanvas = (w: number, h: number, scale: number = 1): CanvasObj => {
+    public generateCanvas = (w: number, h: number, scale: number = 1): CanvasObj => {
         if (!scale) scale = 1
         let canvas: HTMLCanvasElement = document.createElement('canvas')
         canvas.width = w * scale
