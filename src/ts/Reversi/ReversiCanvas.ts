@@ -4,13 +4,13 @@ import EditorAnimation from '../Editor/EditorAnimation'
 import ManagerResource from '../Editor/ManagerResource'
 import { CanvasObj } from 'src/ts/Util'
 import ReversiMain from './ReversiMain'
-const animationEditor: EditorAnimation = new EditorAnimation()
-const rm: ManagerResource = new ManagerResource()
 
 export default class ReversiCanvas {
     private rMain: ReversiMain = new ReversiMain()
-    private ce: EditorCanvas = new EditorCanvas()
-    private gameBase: EditorGameBase = new EditorGameBase()
+    private ec: EditorCanvas = new EditorCanvas()
+    private mr: ManagerResource = new ManagerResource()
+    private ea: EditorAnimation = new EditorAnimation()
+    private egb: EditorGameBase = new EditorGameBase()
     public canvas: CanvasObj
     public context: CanvasRenderingContext2D
     private squareSize: number = null
@@ -34,10 +34,10 @@ export default class ReversiCanvas {
     }
 
     private initCanvasObject = (): void => {
-        let sz = this.gameBase.getFitSz(10, 11)
+        let sz = this.egb.getFitSz(10, 11)
         let scale = 1
         // if (sz.w <= 600) scale = 2
-        this.canvas = this.ce.initCanvas('reversi', sz.w, sz.h, scale)
+        this.canvas = this.ec.initCanvas('reversi', sz.w, sz.h, scale)
         this.context = this.canvas.context
     }
 
@@ -72,7 +72,7 @@ export default class ReversiCanvas {
 
     public drowSquareAll = (): void => {
         this.context.fillStyle = "#0000ee"
-        this.ce.fillMarginRect(this.context, this.layout.boardX, this.layout.boardY, this.layout.boardW, this.layout.boardH, -2)
+        this.ec.fillMarginRect(this.context, this.layout.boardX, this.layout.boardY, this.layout.boardW, this.layout.boardH, -2)
         this.rMain.scanBoard((i: number, x: number, y: number) => {
             this.drowSquare(x, y)
         })
@@ -88,15 +88,15 @@ export default class ReversiCanvas {
         //
         // this.context.fillStyle = "#ffb900"
         this.context.fillStyle = "#1e90ff"
-        this.ce.fillMarginRect(this.context, r.x, r.y, this.squareSize, this.squareSize, marginOut)
+        this.ec.fillMarginRect(this.context, r.x, r.y, this.squareSize, this.squareSize, marginOut)
         //
         // this.context.fillStyle = "#fff05b"
         this.context.fillStyle = "#1e90ff"
-        this.ce.fillMarginRect(this.context, r.x, r.y, this.squareSize - marginIn, this.squareSize - marginIn, marginOut)
+        this.ec.fillMarginRect(this.context, r.x, r.y, this.squareSize - marginIn, this.squareSize - marginIn, marginOut)
         //
         // this.context.fillStyle = "#086319"
         this.context.fillStyle = "#aacdff"
-        let rect: any = this.ce.fillMarginRect(this.context, r.x, r.y, this.squareSize, this.squareSize, marginOut + marginIn)
+        let rect: any = this.ec.fillMarginRect(this.context, r.x, r.y, this.squareSize, this.squareSize, marginOut + marginIn)
         let w: any = rect.w
         let h: any = rect.h
     }
@@ -109,8 +109,10 @@ export default class ReversiCanvas {
 
     public resizeToken = (): void => {
         for (let i = 0; i < 2; i++) {
-            let token = rm.imgs["tkn" + i]
-
+            let token = this.mr.imgs["tkn" + i]
+            this.mr.imgs["tkn" + i] = this.ec.getScaledImg(
+                token, 0, 0, token.elem.width, token.elem.height, this.squareSize, this.squareSize
+            )
         }
     }
 }
