@@ -12,7 +12,7 @@ export default class ReversiCanvas {
     public canvas: CanvasObj
     public context: CanvasRenderingContext2D
     private squareSize: number = null
-    private layout: any = {
+    public layout: any = {
         squareSize: 0,
         boardX: 0, boardY: 0,
         boardW: 0, boardH: 0,
@@ -26,9 +26,9 @@ export default class ReversiCanvas {
 
     constructor(rm: ResourceManager) {
         this.rm = rm
+        this.initCanvas()
     }
 
-    // TODO: Constructorとする そうでないとプロパティがセットされない可能性がある
     public initCanvas = (): void => {
         this.initCanvasObject()
         this.initCanvasLayout()

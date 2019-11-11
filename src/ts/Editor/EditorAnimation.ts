@@ -2,7 +2,7 @@ import { AnimationObj, Time } from '../Util'
 export default class EditorAnimation {
     private updateArr: AnimationObj[] = []
     private animationID: number | null = null 
-    private time: Time = {
+    public time: Time = {
         old: null,
         now: null,
         diff: 0,

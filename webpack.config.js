@@ -76,7 +76,6 @@ module.exports = {
 		new HtmlWebpackPlugin(
 			{
 				filename: 'test_effect_message.html',
-				template: './src/html/index.html',
 				chunks: ['test_effect_message']
 			}
 		)
