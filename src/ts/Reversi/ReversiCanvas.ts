@@ -1,6 +1,5 @@
 import EditorCanvas from '../Editor/EditorCanvas'
 import EditorGameBase from '../Editor/EditorGameBase'
-import EditorAnimation from '../Editor/EditorAnimation'
 import ResourceManager from '../ResourceManager/ResourceManager'
 import { CanvasObj} from 'src/ts/Util'
 import ReversiMain from './ReversiMain'
@@ -8,7 +7,6 @@ import ReversiMain from './ReversiMain'
 export default class ReversiCanvas {
     private rMain: ReversiMain = new ReversiMain()
     private rm: ResourceManager = null
-    private ea: EditorAnimation = new EditorAnimation()
     private ec: EditorCanvas = new EditorCanvas()
     private egb: EditorGameBase = new EditorGameBase()
     public canvas: CanvasObj
