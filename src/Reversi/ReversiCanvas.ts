@@ -108,6 +108,9 @@ export default class ReversiCanvas {
     }
 
     public resizeToken = (): void => {
-        
+        for (let i = 0; i < 2; i++) {
+            let token = rm.imgs["tkn" + i]
+            
+        }
     }
 }
