@@ -31,6 +31,7 @@ module.exports = {
 	entry: {
 		index: './src/index.ts',
 		test_resource: './src/test_resource.ts',
+		test_animation: './src/test_animation.ts',
 		test_stone: './src/test_stone.ts'
 	},
 
@@ -55,6 +56,13 @@ module.exports = {
 				filename: 'test_resource.html',
 				template: './src/html/index.html',
 				chunks: ['test_resource']
+			}
+		),
+		new HtmlWebpackPlugin(
+			{
+				filename: 'test_animation.html',
+				template: './src/html/index.html',
+				chunks: ['test_animation']
 			}
 		),
 		new HtmlWebpackPlugin(
