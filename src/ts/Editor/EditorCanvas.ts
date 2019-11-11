@@ -1,5 +1,5 @@
-import { CanvasObj } from './Util'
-export default class CanvasEditor {
+import { CanvasObj } from '../Util'
+export default class EditorCanvas {
     private _scale: number = 1
     private generateCanvas = (w: number, h: number, scale: number = 1): CanvasObj => {
         if (!scale) scale = 1

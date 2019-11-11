@@ -1,16 +1,16 @@
-import CanvasEditor from '../CanvasEditor'
-import GameBaseEditor from '../GameBaseEditor'
-import AnimationEditor from '../AnimationEditor'
-import ResourceManager from '../ResourceManager'
-import { CanvasObj } from 'src/Util'
+import EditorCanvas from '../Editor/EditorCanvas'
+import EditorGameBase from '../Editor/EditorGameBase'
+import EditorAnimation from '../Editor/EditorAnimation'
+import ManagerResource from '../Editor/ManagerResource'
+import { CanvasObj } from 'src/ts/Util'
 import ReversiMain from './ReversiMain'
-const animationEditor: AnimationEditor = new AnimationEditor()
-const rm: ResourceManager = new ResourceManager()
+const animationEditor: EditorAnimation = new EditorAnimation()
+const rm: ManagerResource = new ManagerResource()
 
 export default class ReversiCanvas {
     private rMain: ReversiMain = new ReversiMain()
-    private ce: CanvasEditor = new CanvasEditor()
-    private gameBase: GameBaseEditor = new GameBaseEditor()
+    private ce: EditorCanvas = new EditorCanvas()
+    private gameBase: EditorGameBase = new EditorGameBase()
     public canvas: CanvasObj
     public context: CanvasRenderingContext2D
     private squareSize: number = null
@@ -110,7 +110,7 @@ export default class ReversiCanvas {
     public resizeToken = (): void => {
         for (let i = 0; i < 2; i++) {
             let token = rm.imgs["tkn" + i]
-            
+
         }
     }
 }

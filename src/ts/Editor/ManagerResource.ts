@@ -1,6 +1,6 @@
-import { ResourceImage, ResourceSound } from './Util'
+import { ResourceImage, ResourceSound } from '../Util'
 import { resolve } from 'dns'
-export default class ResourceManager {
+export default class ManagerResource {
     public imgs: { [key: string]: ResourceImage } = {}
     public sounds: { [key: string]: ResourceSound } = {}
     public loadImage = (name: string, url: string): Promise<boolean> => {

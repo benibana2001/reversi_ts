@@ -1,19 +1,19 @@
 import './scss/style.scss'
-import { CanvasObj, Time, ResourceImage } from './Util'
-import CanvasEditor from './CanvasEditor'
-import GameBaseEditor from './GameBaseEditor'
-import AnimationEditor from './AnimationEditor'
-import ResourceManager from './ResourceManager'
+import { CanvasObj, Time, ResourceImage } from './ts/Util'
+import EditorCanvas from './ts/Editor/EditorCanvas'
+import EditorGameBase from './ts/Editor/EditorGameBase'
+import EditorAnimation from './ts/Editor/EditorAnimation'
+import ManagerResource from './ts/Editor/ManagerResource'
 
 import tkn0 from './img/icon_menherachan04_28.jpg'
 import tkn1 from './img/icon_menherachan04_25.jpg'
 import bgm01 from './snd/Jigsaw_Puzzle.mp3'
-import ReversiCanvas from './Reversi/ReversiCanvas'
+import ReversiCanvas from './ts/Reversi/ReversiCanvas'
 let id: string = 'reversi'
-const canvasManager: CanvasEditor = new CanvasEditor()
-const gameBase: GameBaseEditor = new GameBaseEditor()
-const animationEditor: AnimationEditor = new AnimationEditor()
-const rm: ResourceManager = new ResourceManager()
+const canvasManager: EditorCanvas = new EditorCanvas()
+const gameBase: EditorGameBase = new EditorGameBase()
+const animationEditor: EditorAnimation = new EditorAnimation()
+const rm: ManagerResource = new ManagerResource()
 const rc: ReversiCanvas = new ReversiCanvas()
 let r: Promise<any>[] = []
 

@@ -1,18 +1,18 @@
 import './scss/style.scss'
-import { CanvasObj, Time, ResourceImage } from './Util'
-import CanvasEditor from './CanvasEditor'
-import GameBaseEditor from './GameBaseEditor'
-import AnimationEditor from './AnimationEditor'
-import ResourceManager from './ResourceManager'
+import { CanvasObj, Time, ResourceImage } from './ts/Util'
+import EditorCanvas from './ts/Editor/EditorCanvas'
+import EditorGameBase from './ts/Editor/EditorGameBase'
+import EditorAnimation from './ts/Editor/EditorAnimation'
+import ManagerResource from './ts/Editor/ManagerResource'
 
 import tkn0 from './img/icon_menherachan04_28.jpg'
 import tkn1 from './img/icon_menherachan04_25.jpg'
 import bgm01 from './snd/Jigsaw_Puzzle.mp3'
 let id: string = 'reversi'
 
-const canvasManager: CanvasEditor = new CanvasEditor()
-const gameBase: GameBaseEditor = new GameBaseEditor()
-const animationEditor: AnimationEditor = new AnimationEditor()
+const canvasManager: EditorCanvas = new EditorCanvas()
+const gameBase: EditorGameBase = new EditorGameBase()
+const animationEditor: EditorAnimation = new EditorAnimation()
 let sz: { w: number, h: number } = gameBase.getFitSz(10, 11)
 // let c: CanvasObj = canvasManager.initCanvas(id, sz.w, sz.h, null)
 /*
@@ -37,7 +37,7 @@ setTimeout(() => { animationEditor.remove("rct02") }, 1000)
 setTimeout(() => { animationEditor.stop() }, 2000)
 */
 
-let rm: ResourceManager = new ResourceManager()
+let rm: ManagerResource = new ManagerResource()
 let r: Promise<any>[] = []
 r.push(rm.loadImage("tkn0", tkn0))
 r.push(rm.loadImage("tkn1", tkn1));

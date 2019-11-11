@@ -1,4 +1,4 @@
-export default class GameBaseEditor {
+export default class EditorGameBase {
     private getWinH = (): number => {
         return window.innerHeight
     }
