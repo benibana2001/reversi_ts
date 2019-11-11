@@ -1,15 +1,15 @@
 import EditorCanvas from '../Editor/EditorCanvas'
 import EditorGameBase from '../Editor/EditorGameBase'
 import EditorAnimation from '../Editor/EditorAnimation'
-import ManagerResource from '../Editor/ManagerResource'
+import ResourceManager from '../ResourceManager/ResourceManager'
 import { CanvasObj } from 'src/ts/Util'
 import ReversiMain from './ReversiMain'
 
 export default class ReversiCanvas {
     private rMain: ReversiMain = new ReversiMain()
-    private ec: EditorCanvas = new EditorCanvas()
-    private mr: ManagerResource = new ManagerResource()
+    private rm: ResourceManager = null
     private ea: EditorAnimation = new EditorAnimation()
+    private ec: EditorCanvas = new EditorCanvas()
     private egb: EditorGameBase = new EditorGameBase()
     public canvas: CanvasObj
     public context: CanvasRenderingContext2D
@@ -24,6 +24,10 @@ export default class ReversiCanvas {
         ],
         fontSize: 0,
         fontFamily: 'meiryo'
+    }
+
+    constructor(rm: ResourceManager) {
+        this.rm = rm
     }
 
     // TODO: Constructorとする そうでないとプロパティがセットされない可能性がある
@@ -109,11 +113,10 @@ export default class ReversiCanvas {
 
     public resizeToken = (): void => {
         for (let i = 0; i < 2; i++) {
-            let token = this.mr.imgs["tkn" + i]
-            console.log(this.mr.imgs)
-            console.log(token)
-            this.mr.imgs["tkn" + i] = this.ec.getScaledImg(
-                token, 0, 0, token.elem.width, token.elem.height, this.squareSize, this.squareSize
+            let token = this.rm.imgs["tkn" + i]
+            console.log(`token: ${token}`)
+            this.rm.imgs["tkn" + i] = this.ec.getScaledImg(
+                token.elem, 0, 0, token.elem.width, token.elem.height, this.squareSize, this.squareSize
             )
         }
     }
@@ -122,6 +125,12 @@ export default class ReversiCanvas {
         if (p < 0 || 1 < p) return
         //
         let r = this.xyToReal(x, y)
-        this.context.drawImage(this.mr.imgs["tkn" + p].elem, r.x, r.y)
+        console.log(`this.rm.imgs: ${this.rm.imgs}`)
+        // console.log(this.rm.imgs)
+        // console.log(this.rm.imgs['tkn0'])
+        console.log(this.rm.imgs["tkn" + p])
+        // console.log(this.rm.imgs["'tkn' + p"])
+
+        this.context.drawImage(this.rm.imgs["tkn" + p], r.x, r.y)
     }
 }

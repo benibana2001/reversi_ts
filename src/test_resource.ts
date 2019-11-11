@@ -3,7 +3,7 @@ import { CanvasObj, Time, ResourceImage } from './ts/Util'
 import EditorCanvas from './ts/Editor/EditorCanvas'
 import EditorGameBase from './ts/Editor/EditorGameBase'
 import EditorAnimation from './ts/Editor/EditorAnimation'
-import ManagerResource from './ts/Editor/ManagerResource'
+import ResourceManager from './ts/ResourceManager/ResourceManager'
 
 import tkn0 from './img/icon_menherachan04_28.jpg'
 import tkn1 from './img/icon_menherachan04_25.jpg'
@@ -37,7 +37,7 @@ setTimeout(() => { animationEditor.remove("rct02") }, 1000)
 setTimeout(() => { animationEditor.stop() }, 2000)
 */
 
-let rm: ManagerResource = new ManagerResource()
+let rm: ResourceManager = new ResourceManager()
 let r: Promise<any>[] = []
 r.push(rm.loadImage("tkn0", tkn0))
 r.push(rm.loadImage("tkn1", tkn1));

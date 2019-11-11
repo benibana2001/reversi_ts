@@ -3,7 +3,7 @@ import { CanvasObj, Time, ResourceImage } from './ts/Util'
 import EditorCanvas from './ts/Editor/EditorCanvas'
 import EditorGameBase from './ts/Editor/EditorGameBase'
 import EditorAnimation from './ts/Editor/EditorAnimation'
-import ManagerResource from './ts/Editor/ManagerResource'
+import ResourceManager from './ts/ResourceManager/ResourceManager'
 
 import tkn0 from './img/icon_menherachan04_28.jpg'
 import tkn1 from './img/icon_menherachan04_25.jpg'
@@ -13,8 +13,8 @@ let id: string = 'reversi'
 const canvasManager: EditorCanvas = new EditorCanvas()
 const gameBase: EditorGameBase = new EditorGameBase()
 const animationEditor: EditorAnimation = new EditorAnimation()
-const rm: ManagerResource = new ManagerResource()
-const rc: ReversiCanvas = new ReversiCanvas()
+const rm: ResourceManager = new ResourceManager()
+const rc: ReversiCanvas = new ReversiCanvas(rm)
 let r: Promise<any>[] = []
 
 let body: HTMLElement = document.body
