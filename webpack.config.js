@@ -32,7 +32,8 @@ module.exports = {
 		index: './src/index.ts',
 		test_resource: './src/test_resource.ts',
 		test_animation: './src/test_animation.ts',
-		test_stone: './src/test_stone.ts'
+		test_stone: './src/test_stone.ts',
+		test_effect_message: './src/test_effect_message.ts',
 	},
 
 	output: {
@@ -70,6 +71,13 @@ module.exports = {
 				filename: 'test_stone.html',
 				// template: './src/html/index.html',
 				chunks: ['test_stone']
+			}
+		),
+		new HtmlWebpackPlugin(
+			{
+				filename: 'test_effect_message.html',
+				template: './src/html/index.html',
+				chunks: ['test_effect_message']
 			}
 		)
 	],
