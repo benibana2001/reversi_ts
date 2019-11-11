@@ -111,6 +111,20 @@ module.exports = {
 				]
 			},
 			{
+				test: /\.css$/,
+				include: [path.resolve(__dirname, 'src')],
+				use: [
+					"style-loader",
+					{
+						loader: "css-loader",
+						options: {
+							url: false,
+							sourceMap: true
+						}
+					},
+				]
+			},
+			{
 				test: /\.html$/,
 				include: [path.resolve(__dirname, 'src')],
 				loader: "html-loader"
@@ -143,7 +157,19 @@ module.exports = {
 
 					}
 				],
-			}
+			},
+			{
+				test: /\.(eot|svg|ttf|woff|woff2)$/,
+				include: [path.resolve(__dirname, 'src')],
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].[ext]'
+						}
+					}
+				],
+			  }
 		]
 	},
 

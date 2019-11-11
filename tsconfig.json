@@ -15,6 +15,15 @@
       ],
       "import-mp3": [
         "types/import-mp3"
+      ],
+      "import-woff": [
+        "types/import-woff"
+      ],
+      "import-otf": [
+        "types/import-otf"
+      ],
+      "import-eot": [
+        "types/import-eot"
       ]
     },
     "typeRoots": [
