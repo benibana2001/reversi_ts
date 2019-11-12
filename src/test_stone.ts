@@ -33,7 +33,7 @@ let parallel = async (): Promise<any> => {
     // キャンパスの初期化
     rc.initCanvas()
     // マスを描画
-    rc.drowSquareAll()
+    rc.drawSquareAll()
     // トークンを初期化
     rc.resizeToken()
     // トークンの配置

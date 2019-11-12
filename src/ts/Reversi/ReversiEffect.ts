@@ -7,7 +7,7 @@ export default class ReversiEffect {
     private rm: ResourceManager = new ResourceManager()
     public ea: EditorAnimation = new EditorAnimation()
     private rMain: ReversiMain = new ReversiMain()
-    private rc: ReversiCanvas = new ReversiCanvas(this.rm)
+    public rc: ReversiCanvas = new ReversiCanvas(this.rm)
     //
     public message = async (text: string): Promise<any> => {
         let timeMax: number = 750

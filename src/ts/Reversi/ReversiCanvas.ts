@@ -9,6 +9,7 @@ export default class ReversiCanvas {
     private rm: ResourceManager = null
     private ec: EditorCanvas = new EditorCanvas()
     private egb: EditorGameBase = new EditorGameBase()
+    //
     public canvas: CanvasObj
     public context: CanvasRenderingContext2D
     private squareSize: number = null
@@ -32,7 +33,7 @@ export default class ReversiCanvas {
     public initCanvas = (): void => {
         this.initCanvasObject()
         this.initCanvasLayout()
-        this.drowBackground()
+        this.drawBackground()
     }
 
     private initCanvasObject = (): void => {
@@ -67,20 +68,20 @@ export default class ReversiCanvas {
         this.squareSize = this.layout.squareSize
     }
 
-    public drowBackground = (): void => {
+    public drawBackground = (): void => {
         this.context.fillStyle = "#afa";
         this.context.fillRect(0, 0, this.canvas.w, this.canvas.h)
     }
 
-    public drowSquareAll = (): void => {
+    public drawSquareAll = (): void => {
         this.context.fillStyle = "#0000ee"
         this.ec.fillMarginRect(this.context, this.layout.boardX, this.layout.boardY, this.layout.boardW, this.layout.boardH, -2)
         this.rMain.scanBoard((i: number, x: number, y: number) => {
-            this.drowSquare(x, y)
+            this.drawSquare(x, y)
         })
     }
 
-    public drowSquare = (x: number, y: number) => {
+    public drawSquare = (x: number, y: number) => {
         let r: any = this.xyToReal(x, y)
         let marginOut: number = 1
         let marginIn: number = 2

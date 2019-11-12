@@ -2,7 +2,6 @@ import './fnt/ArchivoBlack.css'
 import './fnt/ArchivoBlack.woff'
 import './scss/style.scss'
 import ResourceManager from "./ts/ResourceManager/ResourceManager"
-import EditorAnimation from './ts/Editor/EditorAnimation'
 import ReversiEffect from './ts/Reversi/ReversiEffect'
 
 let body: HTMLElement = document.body
@@ -11,7 +10,6 @@ elem.setAttribute("id", "reversi")
 body.appendChild(elem)
 
 const rm: ResourceManager = new ResourceManager()
-const ea: EditorAnimation = new EditorAnimation()
 const re: ReversiEffect = new ReversiEffect()
 
 let r: Promise<any>[] = []
@@ -21,9 +19,11 @@ Promise.all(r).then(()=> {
     console.log(`loaded font`)
     let b: HTMLElement = document.body
     b.style.fontFamily = "ArchivoBlack"
-    //
+    // TODO: Resource Managerを単一で管理できるよう引数で渡す構造とする
     re.ea.start()
-    // TODO: バックグラウンドの描画 メッセージ文字を上塗り消去するため
+    re.ea.add('bg', ()=> {
+        re.rc.drawBackground()
+    })
     re.message("Msg1").then(()=> {
         console.log("DONE Msg1")
     })
