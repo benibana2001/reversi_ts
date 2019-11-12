@@ -20,6 +20,7 @@ Promise.all(r).then(()=> {
     let b: HTMLElement = document.body
     b.style.fontFamily = "ArchivoBlack"
     // TODO: Resource Managerを単一で管理できるよう引数で渡す構造とする
+    // TODO: フォントが適用されない
     re.ea.start()
     re.ea.add('bg', ()=> {
         re.rc.drawBackground()
