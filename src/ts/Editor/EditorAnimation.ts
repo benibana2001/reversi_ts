@@ -22,8 +22,8 @@ export default class EditorAnimation {
     }
     private update = (): void => {
         this.time.now = new Date()
-        console.log(`this.time.now: ${this.time.now}`)
-        console.log(`this.time.old: ${this.time.old}`)
+        // console.log(`this.time.now: ${this.time.now}`)
+        // console.log(`this.time.old: ${this.time.old}`)
         this.time.diff = this.time.old === null ? 0 : (this.time.now.getTime() - this.time.old.getTime())
         this.time.sum += this.time.diff
         this.time.old = this.time.now

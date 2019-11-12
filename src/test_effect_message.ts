@@ -22,7 +22,8 @@ Promise.all(r).then(()=> {
     let b: HTMLElement = document.body
     b.style.fontFamily = "ArchivoBlack"
     //
-    ea.start()
-    //
-    re.message("Msg1")
+    re.ea.start()
+    re.message("Msg1").then(()=> {
+        console.log("DONE Msg1")
+    })
 })
