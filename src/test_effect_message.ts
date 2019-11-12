@@ -23,6 +23,7 @@ Promise.all(r).then(()=> {
     b.style.fontFamily = "ArchivoBlack"
     //
     re.ea.start()
+    // TODO: バックグラウンドの描画 メッセージ文字を上塗り消去するため
     re.message("Msg1").then(()=> {
         console.log("DONE Msg1")
     })
