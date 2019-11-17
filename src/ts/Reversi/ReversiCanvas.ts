@@ -13,6 +13,7 @@ export default class ReversiCanvas {
     public canvas: CanvasObj
     public context: CanvasRenderingContext2D
     private squareSize: number = null
+    private defautlFontFamily: string = 'meiryo'
     public layout: any = {
         squareSize: 0,
         boardX: 0, boardY: 0,
@@ -22,16 +23,16 @@ export default class ReversiCanvas {
             { x: 0, y: 0, w: 0, align: "right" }// Player 2
         ],
         fontSize: 0,
-        fontFamily: 'meiryo'
+        fontFamily: this.defautlFontFamily
     }
 
     constructor(rm: ResourceManager) {
         this.rm = rm
     }
 
-    public initCanvas = (): void => {
+    public initCanvas = (font: string = this.defautlFontFamily): void => {
         this.initCanvasObject()
-        this.initCanvasLayout()
+        this.initCanvasLayout(font)
         this.drawBackground()
     }
 
@@ -43,7 +44,7 @@ export default class ReversiCanvas {
         this.context = this.canvas.context
     }
 
-    private initCanvasLayout = (): void => {
+    private initCanvasLayout = (font: string): void => {
         // 1マスのサイズ
         this.layout.squareSize = (this.canvas.w * 0.1) | 0
         // 版のサイズ
@@ -63,6 +64,7 @@ export default class ReversiCanvas {
         this.layout.playerScore[0].w = this.layout.playerScore[1].w = this.layout.boardW * 0.35
         //
         this.layout.fontSize = this.layout.squareSize * 0.9
+        this.layout.fontFamily = font
         // setSquareSize
         this.squareSize = this.layout.squareSize
     }

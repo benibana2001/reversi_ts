@@ -17,11 +17,9 @@ rpAry.push(rmngr.loadFont("ArchivoBlack"))
 
 Promise.all(rpAry).then(()=> {
     console.log(`loaded font`)
-    let b: HTMLElement = document.body
-    b.style.fontFamily = "ArchivoBlack"
     // キャンパスの初期化
-    reversi.rc.initCanvas()
-    // TODO: フォントが適用されない
+    reversi.rc.initCanvas("ArchivoBlack")
+    //
     reversi.re.ea.start()
     reversi.re.ea.add('bg', ()=> {
         reversi.re.rc.drawBackground()

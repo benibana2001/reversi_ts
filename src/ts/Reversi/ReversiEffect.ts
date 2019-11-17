@@ -17,7 +17,7 @@ export default class ReversiEffect {
         let name: string = 'message'
         //
         let context = this.rc.context
-        let l = this.rc.layout
+        let l = this.rc.layout// Canvasのレイアウト(font)を適用
         let w = this.rc.canvas.w
         let h = this.rc.canvas.h
         let centerX = w / 2
@@ -32,20 +32,20 @@ export default class ReversiEffect {
                 console.log(timeDiff / timeMax)
                 //
                 if (timeDiff < timeMax) {
-                    this.rc.context.save()
-                    this.rc.context.textAlign = "center"
-                    this.rc.context.textBaseline = "middle"
-                    this.rc.context.strokeStyle = "#fff"
-                    this.rc.context.fillStyle = "#000"
-                    this.rc.context.lineWidth = this.rc.layout.fontSize / 10//描画する線の太さ
-                    this.rc.context.font = this.rc.layout.fontSize * 2 + "px '" + this.rc.layout.fontFamily + "'"
+                    context.save()
+                    context.textAlign = "center"
+                    context.textBaseline = "middle"
+                    context.strokeStyle = "#fff"
+                    context.fillStyle = "#000"
+                    context.lineWidth = l.fontSize / 10//描画する線の太さ
+                    context.font = l.fontSize * 2 + "px '" + l.fontFamily + "'"
                     // 以下、アニメーション部分
-                    this.rc.context.globalAlpha = ratioA
+                    context.globalAlpha = ratioA
                     for (let i = -1; i <= 1; i += 2) {// 2回描画 左から登場と右から登場するアニメーション
-                        this.rc.context.strokeText(text, centerX + w * ratioX * i, centerY)// 文字の縁
-                        this.rc.context.fillText(text, centerX + w * ratioX * i, centerY)// 文字の塗りつぶし
+                        context.strokeText(text, centerX + w * ratioX * i, centerY)// 文字の縁
+                        context.fillText(text, centerX + w * ratioX * i, centerY)// 文字の塗りつぶし
                     }
-                    this.rc.context.restore()
+                    context.restore()
                     console.log("do restore")
                 } else {
                     this.ea.remove(name)
