@@ -4,10 +4,14 @@ import ReversiCanvas from "./ReversiCanvas";
 import ResourceManager from "../ResourceManager/ResourceManager";
 
 export default class ReversiEffect {
-    private rm: ResourceManager = new ResourceManager()
+    private rm: ResourceManager
     public ea: EditorAnimation = new EditorAnimation()
     private rMain: ReversiMain = new ReversiMain()
     public rc: ReversiCanvas = new ReversiCanvas(this.rm)
+    //
+    constructor(rm: ResourceManager) {
+        this.rm = rm
+    }
     //
     public message = async (text: string): Promise<any> => {
         let timeMax: number = 750

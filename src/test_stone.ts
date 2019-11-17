@@ -4,6 +4,7 @@ import ResourceManager from './ts/ResourceManager/ResourceManager'
 import tkn0 from './img/icon_menherachan04_28.jpg'
 import tkn1 from './img/icon_menherachan04_25.jpg'
 import ReversiCanvas from './ts/Reversi/ReversiCanvas'
+import Reversi from './ts/Reversi/Reversi'
 //
 let id: string = 'reversi'
 let body: HTMLElement = document.body
@@ -12,7 +13,7 @@ elem.setAttribute('id', id)
 body.appendChild(elem)
 //
 const rm: ResourceManager = new ResourceManager()
-const rc: ReversiCanvas = new ReversiCanvas(rm)
+const reversi: Reversi = new Reversi(rm)
 //
 let r: Promise<any>[] = []
 r.push(rm.loadImage("tkn0", tkn0))
@@ -30,14 +31,14 @@ let parallel = async (): Promise<any> => {
         elImg.src = rm.imgs[key].src
     }
     // キャンパスの初期化
-    rc.initCanvas()
+    reversi.rc.initCanvas()
     // マスを描画
-    rc.drawSquareAll()
+    reversi.rc.drawSquareAll()
     // トークンを初期化
-    rc.resizeToken()
+    reversi.rc.resizeToken()
     // トークンの配置
-    rc.drawToken(3, 3, 0)
-    rc.drawToken(4, 4, 0)
-    rc.drawToken(3, 4, 1)
-    rc.drawToken(4, 3, 1)
+    reversi.rc.drawToken(3, 3, 0)
+    reversi.rc.drawToken(4, 4, 0)
+    reversi.rc.drawToken(3, 4, 1)
+    reversi.rc.drawToken(4, 3, 1)
 })();
