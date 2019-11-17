@@ -1,15 +1,24 @@
-import EditorAnimation from "../Editor/EditorAnimation";
 import ReversiCanvas from "./ReversiCanvas";
 import ResourceManager from "../ResourceManager/ResourceManager";
+import Editor from "../Editor/Editor";
 
 export default class ReversiEffect {
     private rm: ResourceManager
-    public ea: EditorAnimation = new EditorAnimation()
+    public editor: Editor = new Editor()
+    // TODO: ReversiCanvasを引き剥がす
     public rc: ReversiCanvas
     //
     constructor(rm: ResourceManager, rc: ReversiCanvas) {
         this.rm = rm
         this.rc = rc
+    }
+    //
+    public animStart() {
+        this.editor.animStart()
+    }
+    //
+    public animAdd(name: string, func: Function) {
+        this.editor.animAdd(name, func)
     }
     //
     public message = async (text: string): Promise<any> => {
@@ -23,10 +32,10 @@ export default class ReversiEffect {
         let centerX = w / 2
         let centerY = h / 2
         // 初期化
-        let timeStart = this.ea.time.sum
+        let timeStart = this.editor.ea.time.sum
         return new Promise((resolve: Function, reject: Function) => {
-            this.ea.add(name, () => {
-                let timeDiff = this.ea.time.sum - timeStart
+            this.editor.ea.add(name, () => {
+                let timeDiff = this.editor.ea.time.sum - timeStart
                 let ratioX = timeDiff * 3 > timeMax ? 0 : 1 - (timeDiff * 3 / timeMax)// 横から出てきて中央で停止するために使用
                 let ratioA = Math.sin(Math.PI * timeDiff / timeMax)
                 console.log(timeDiff / timeMax)
@@ -48,7 +57,7 @@ export default class ReversiEffect {
                     context.restore()
                     console.log("do restore")
                 } else {
-                    this.ea.remove(name)
+                    this.editor.ea.remove(name)
                     // console.log("resolve")
                     resolve()
                 }

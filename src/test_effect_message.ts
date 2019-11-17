@@ -20,10 +20,11 @@ Promise.all(rpAry).then(()=> {
     // キャンパスの初期化
     reversi.rc.initCanvas("ArchivoBlack")
     //
-    reversi.re.ea.start()
-    reversi.re.ea.add('bg', ()=> {
-        reversi.re.rc.drawBackground()
+    reversi.re.animStart()
+    reversi.re.animAdd('bg', ()=> {
+        reversi.rc.drawBackground()
     })
+    //
     reversi.re.message("Msg1").then(()=> {
         console.log("DONE Msg1")
     })

@@ -3,7 +3,6 @@ import ResourceManager from './ts/ResourceManager/ResourceManager'
 
 import tkn0 from './img/icon_menherachan04_28.jpg'
 import tkn1 from './img/icon_menherachan04_25.jpg'
-import ReversiCanvas from './ts/Reversi/ReversiCanvas'
 import Reversi from './ts/Reversi/Reversi'
 //
 let id: string = 'reversi'
