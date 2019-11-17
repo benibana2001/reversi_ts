@@ -4,28 +4,27 @@ import ResourceManager from './ts/ResourceManager/ResourceManager'
 import tkn0 from './img/icon_menherachan04_28.jpg'
 import tkn1 from './img/icon_menherachan04_25.jpg'
 import ReversiCanvas from './ts/Reversi/ReversiCanvas'
+//
 let id: string = 'reversi'
-//
-const rm: ResourceManager = new ResourceManager()
-const rc: ReversiCanvas = new ReversiCanvas(rm)
-//
-let r: Promise<any>[] = []
-//
 let body: HTMLElement = document.body
 let elem: HTMLElement = document.createElement('div')
 elem.setAttribute('id', id)
 body.appendChild(elem)
 //
+const rm: ResourceManager = new ResourceManager()
+const rc: ReversiCanvas = new ReversiCanvas(rm)
+//
+let r: Promise<any>[] = []
 r.push(rm.loadImage("tkn0", tkn0))
 r.push(rm.loadImage("tkn1", tkn1))
 
 let parallel = async (): Promise<any> => {
     await Promise.all(r)
 }
-
 (async (): Promise<any> => {
     await parallel()
     let elReversi = document.getElementById(id)
+    console.log(elReversi)
     for (let key in rm.imgs) {
         let elImg: HTMLImageElement = document.createElement('img');
         elImg.src = rm.imgs[key].src
