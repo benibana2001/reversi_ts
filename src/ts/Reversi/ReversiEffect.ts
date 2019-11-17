@@ -1,16 +1,15 @@
 import EditorAnimation from "../Editor/EditorAnimation";
-import ReversiMain from "./ReversiMain";
 import ReversiCanvas from "./ReversiCanvas";
 import ResourceManager from "../ResourceManager/ResourceManager";
 
 export default class ReversiEffect {
     private rm: ResourceManager
     public ea: EditorAnimation = new EditorAnimation()
-    private rMain: ReversiMain = new ReversiMain()
-    public rc: ReversiCanvas = new ReversiCanvas(this.rm)
+    public rc: ReversiCanvas
     //
-    constructor(rm: ResourceManager) {
+    constructor(rm: ResourceManager, rc: ReversiCanvas) {
         this.rm = rm
+        this.rc = rc
     }
     //
     public message = async (text: string): Promise<any> => {

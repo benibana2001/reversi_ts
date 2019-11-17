@@ -24,8 +24,6 @@ let parallel = async (): Promise<any> => {
 }
 (async (): Promise<any> => {
     await parallel()
-    let elReversi = document.getElementById(id)
-    console.log(elReversi)
     for (let key in rm.imgs) {
         let elImg: HTMLImageElement = document.createElement('img');
         elImg.src = rm.imgs[key].src

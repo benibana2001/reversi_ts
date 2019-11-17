@@ -27,7 +27,6 @@ export default class ReversiCanvas {
 
     constructor(rm: ResourceManager) {
         this.rm = rm
-        this.initCanvas()
     }
 
     public initCanvas = (): void => {

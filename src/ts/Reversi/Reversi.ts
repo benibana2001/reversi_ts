@@ -11,7 +11,7 @@ export default class Reversi {
     constructor (rmngr: ResourceManager) {
         this.rmngr = rmngr
         this.rc = new ReversiCanvas(this.rmngr)
-        this.re = new ReversiEffect(this.rmngr)
+        this.re = new ReversiEffect(this.rmngr, this.rc)
         this.rm = new ReversiMain()
     }
 }

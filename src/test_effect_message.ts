@@ -19,7 +19,8 @@ Promise.all(rpAry).then(()=> {
     console.log(`loaded font`)
     let b: HTMLElement = document.body
     b.style.fontFamily = "ArchivoBlack"
-    // TODO: Resource Managerを単一で管理できるよう引数で渡す構造とする
+    // キャンパスの初期化
+    reversi.rc.initCanvas()
     // TODO: フォントが適用されない
     reversi.re.ea.start()
     reversi.re.ea.add('bg', ()=> {
