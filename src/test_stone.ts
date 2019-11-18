@@ -38,4 +38,26 @@ let parallel = async (): Promise<any> => {
     reversi.rc.drawToken(4, 4, 0)
     reversi.rc.drawToken(3, 4, 1)
     reversi.rc.drawToken(4, 3, 1)
+    //
+    // Click
+    let scale: number = 1
+    reversi.rc.canvas.canvas.addEventListener('click', (e) => {
+        let x: number = e.offsetX * scale
+        let y: number = e.offsetY * scale
+        let layout = reversi.rc.layout// canvas情報を取得
+        //
+        let inCanvasClick: boolean = reversi.re.editor.egb.inRange(
+               x,
+               y,
+               layout.boardX,
+               layout.boardY,
+               layout.boardW,
+               layout.boardH
+        )
+        if (!inCanvasClick) return
+        //
+        let squareX: number = ((x - layout.boardX) / layout.squareSize) | 0
+        let squareY: number = ((y - layout.boardY) / layout.squareSize) | 0
+        console.log(squareX, squareY)
+    })
 })();
