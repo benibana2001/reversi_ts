@@ -20,6 +20,7 @@ export default class ReversiMain {
     public isEnd: boolean = false
     //
     public init = ():void => {
+        console.log("START GAME")
         // 全てのマスを空に
 
         // 置石x4
