@@ -128,7 +128,7 @@ export default class ReversiCanvas {
         this.context.drawImage(this.rm.imgs["tkn" + p], r.x, r.y)
     }
 
-    public drowPlayerScore = (player: number, score: number):void => {
+    private drowPlayerScore = (player: number, score: number):void => {
         let sscore: string = ("0" + String(score)).substr(-2)
         let l = this.layout
         let lScore = l.playerScore[player]
@@ -140,9 +140,11 @@ export default class ReversiCanvas {
         this.context.fillStyle = "#000"
         this.context.font = l.fontSize + "px '" + l.fontFamily + "'"
         this.context.fillText(name + sscore, lScore.x, lScore.y, lScore.w)
+        console.log(this.context.font)
     }
 
     public drowPlayerScores = (): void => {
-        this.drowPlayerScore(0, )
+        this.drowPlayerScore(0, this.rMain.score[0])
+        this.drowPlayerScore(1, this.rMain.score[1])
     }
 }

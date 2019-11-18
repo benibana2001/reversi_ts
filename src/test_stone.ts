@@ -1,3 +1,5 @@
+import './fnt/ArchivoBlack.css'
+import './fnt/ArchivoBlack.woff'
 import './scss/style.scss'
 import ResourceManager from './ts/ResourceManager/ResourceManager'
 
@@ -17,6 +19,7 @@ const reversi: Reversi = new Reversi(rm)
 let r: Promise<any>[] = []
 r.push(rm.loadImage("tkn0", tkn0))
 r.push(rm.loadImage("tkn1", tkn1))
+r.push(rm.loadFont("ArchivoBlack"))
 
 let parallel = async (): Promise<any> => {
     await Promise.all(r)
@@ -27,8 +30,9 @@ let parallel = async (): Promise<any> => {
         let elImg: HTMLImageElement = document.createElement('img');
         elImg.src = rm.imgs[key].src
     }
+    console.log(rm)
     // キャンパスの初期化
-    reversi.rc.initCanvas()
+    reversi.rc.initCanvas("ArchivoBlack")
     // マスを描画
     reversi.rc.drawSquareAll()
     // トークンを初期化
@@ -38,7 +42,10 @@ let parallel = async (): Promise<any> => {
     reversi.rc.drawToken(4, 4, 0)
     reversi.rc.drawToken(3, 4, 1)
     reversi.rc.drawToken(4, 3, 1)
-    //
+    // スコアの描画
+    // reversi.rc.context.font = reversi.rc.layout.fontSize + "px '" + reversi.rc.layout.fontFamily + "'"
+    console.log(reversi.rc.layout)
+    reversi.rc.drowPlayerScores()
     // Click
     let scale: number = 1
     reversi.rc.canvas.canvas.addEventListener('click', (e) => {

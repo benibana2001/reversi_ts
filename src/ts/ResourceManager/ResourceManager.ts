@@ -24,6 +24,7 @@ export default class ResourceManager {
         // let checkText: string = "abcdefg"
         //
         return new Promise((resolve: Function, reject: Function) => {
+            // TODO: ここのコンテキストでしかfontが読まれない 
             c.context.font = "32px " + font
             // let mt1: number = c.context.measureText(checkText).width
             resolve()
