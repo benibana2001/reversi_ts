@@ -9,7 +9,8 @@ export default class ResourceManager {
             this.imgs[name] = image
             this.imgs[name].src = url
             this.imgs[name].onload = (() => {
-                let msg: string = `DONE Loading: ${name}`
+                let msg: string = `load image: ${name}\ ${url}`
+                console.log(msg)
                 resolve(true)
             })
         }
@@ -42,7 +43,6 @@ export default class ResourceManager {
     private async loadAudioBGM (name: string, url: string): Promise<any> {
         return new Promise(
             (resolve: Function, reject: Function) => {
-                console.log(name, url)
                 let sound: ResourceSound = {
                     audio: new Audio(""),
                     seNow: null
@@ -52,13 +52,13 @@ export default class ResourceManager {
                 this.sounds[name] = sound
 
                 this.sounds[name].audio.addEventListener("canplaythrough", () => {
-                    console.log(`load sound: ${name}`)
+                    console.log(`load sound: ${name}\ ${url}`)
                     resolve()
                 })
 
                 this.sounds[name].audio.addEventListener("error", (e) => {
-                    console.log(`err sound: ${name}`)
-                    console.log(e)
+                    console.log(`err sound: ${name}\ ${url}`)
+                    console.log(`error.message: ${e.message}`)
                     reject()
                 })
             }

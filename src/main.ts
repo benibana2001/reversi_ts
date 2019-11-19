@@ -17,4 +17,4 @@ elem.setAttribute('id', id)
 body.appendChild(elem)
 //----------------------------------
 // Start
-reversi.rm.init()
+reversi.rcore.init()

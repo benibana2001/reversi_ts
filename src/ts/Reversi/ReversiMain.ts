@@ -20,45 +20,80 @@ export default class ReversiMain {
     public isEnd: boolean = false
     //----------------------------------------
     // 
-    public init(): void {
-        console.log("INITIALIZE GAME")
-        // Load Resources
-
-        // Init Canvas
-
-        // Risize Token
-
-        // Init Reversi Effect
-
-        // Start
-        this.start()
-
-        // 全てのマスを空に
-
-        // 置石x4
-    }
-    //
-    private start():  void {
-    
-    }
-    //
-    private updateCanvas():  void {
-    
-    }
-    //
-    private buttonStart ():  void {
-    
-    }
-    //
-    private initClick ():  void {
-    
-    }
-    //
-    private clickBoard ():  void {
+    /**
+     * init
+     */
+    public init ():  void {
     
     }
 
-    //
+    /**
+     * XYToI
+     * XY座標から要素の位置を求める
+     */
+    public XYToI ():  void {
+    
+    }
+
+    /**
+     * calcScore
+     */
+    public calcScore ():  void {
+    
+    }
+
+    /**
+     * scanLine
+     * 1列走査
+     */
+    public scanLine ():  void {
+    
+    }
+
+    /**
+     * getEnableSquares
+     * 配置可能マス配列の取得
+     */
+    public getEnableSquares ():  void {
+    
+    }
+
+    /**
+     * putToken
+     */
+    public putToken ():  void {
+    
+    }
+
+    /**
+     * next
+     * 進行処理
+     */
+    public next ():  void {
+    
+    }
+
+    /**
+     * execReverse
+     */
+    public execReverse ():  void {
+    
+    }
+
+    /**
+     * skip
+     */
+    public skip ():  void {
+    
+    }
+
+    /**
+     * getPlayerType
+     */
+    public getPlayerType ():  void {
+    
+    }
+
     public scanBoard (f: Function): void {
         let max: number = this.w * this.h
         for (let i = 0; i < max; i++) {

@@ -18,11 +18,11 @@ rpAry.push(rmngr.loadFont("ArchivoBlack"))
 Promise.all(rpAry).then(()=> {
     console.log(`loaded font`)
     // キャンパスの初期化
-    reversi.rc.initCanvas("ArchivoBlack")
+    reversi.rcanvas.initCanvas("ArchivoBlack")
     //
     reversi.re.animStart()
     reversi.re.animAdd('bg', ()=> {
-        reversi.rc.drawBackground()
+        reversi.rcanvas.drawBackground()
     })
     //
     reversi.re.message("Msg1").then(()=> {

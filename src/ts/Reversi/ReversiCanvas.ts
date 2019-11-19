@@ -113,7 +113,7 @@ export default class ReversiCanvas {
     public resizeToken (): void {
         for (let i = 0; i < 2; i++) {
             let token = this.rm.imgs["tkn" + i]
-            console.log(`token: ${token}`)
+            // console.log(`token: ${token}`)
             this.rm.imgs["tkn" + i] = this.editor.ec.getScaledImg(
                 token, 0, 0, token.width, token.height, this.squareSize, this.squareSize
             )
@@ -125,7 +125,7 @@ export default class ReversiCanvas {
         //
         let r = this.xyToReal(x, y)
         // console.log(this.rm.imgs["tkn" + p].elem) => undefinedになる
-        console.log(this.rm.imgs)
+        // console.log(this.rm.imgs)
         this.context.drawImage(this.rm.imgs["tkn" + p], r.x, r.y)
     }
 

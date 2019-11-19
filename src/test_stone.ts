@@ -32,26 +32,26 @@ let parallel = async (): Promise<any> => {
     }
     console.log(rm)
     // キャンパスの初期化
-    reversi.rc.initCanvas("ArchivoBlack")
+    reversi.rcanvas.initCanvas("ArchivoBlack")
     // マスを描画
-    reversi.rc.drawSquareAll()
+    reversi.rcanvas.drawSquareAll()
     // トークンを初期化
-    reversi.rc.resizeToken()
+    reversi.rcanvas.resizeToken()
     // トークンの配置
-    reversi.rc.drawToken(3, 3, 0)
-    reversi.rc.drawToken(4, 4, 0)
-    reversi.rc.drawToken(3, 4, 1)
-    reversi.rc.drawToken(4, 3, 1)
+    reversi.rcanvas.drawToken(3, 3, 0)
+    reversi.rcanvas.drawToken(4, 4, 0)
+    reversi.rcanvas.drawToken(3, 4, 1)
+    reversi.rcanvas.drawToken(4, 3, 1)
     // スコアの描画
-    // reversi.rc.context.font = reversi.rc.layout.fontSize + "px '" + reversi.rc.layout.fontFamily + "'"
-    console.log(reversi.rc.layout)
-    reversi.rc.drowPlayerScores()
+    // reversi.rcanvas.context.font = reversi.rcanvas.layout.fontSize + "px '" + reversi.rcanvas.layout.fontFamily + "'"
+    console.log(reversi.rcanvas.layout)
+    reversi.rcanvas.drowPlayerScores()
     // Click
     let scale: number = 1
-    reversi.rc.canvas.canvas.addEventListener('click', (e) => {
+    reversi.rcanvas.canvas.canvas.addEventListener('click', (e) => {
         let x: number = e.offsetX * scale
         let y: number = e.offsetY * scale
-        let layout = reversi.rc.layout// canvas情報を取得
+        let layout = reversi.rcanvas.layout// canvas情報を取得
         //
         let inCanvasClick: boolean = reversi.re.editor.egb.inRange(
                x,
