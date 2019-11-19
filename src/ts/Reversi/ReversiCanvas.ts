@@ -23,18 +23,19 @@ export default class ReversiCanvas {
         fontSize: 0,
         fontFamily: this.defautlFontFamily
     }
-
+    //----------------------------------------
+    //
     constructor(rm: ResourceManager) {
         this.rm = rm
     }
 
-    public initCanvas = (font: string = this.defautlFontFamily): void => {
+    public initCanvas (font: string = this.defautlFontFamily): void {
         this.initCanvasObject()
         this.initCanvasLayout(font)
         this.drawBackground()
     }
 
-    private initCanvasObject = (): void => {
+    private initCanvasObject (): void {
         let sz = this.editor.egb.getFitSz(10, 11)
         let scale = 1
         // if (sz.w <= 600) scale = 2
@@ -42,7 +43,7 @@ export default class ReversiCanvas {
         this.context = this.canvas.context
     }
 
-    private initCanvasLayout = (font: string): void => {
+    private initCanvasLayout (font: string): void {
         // 1マスのサイズ
         this.layout.squareSize = (this.canvas.w * 0.1) | 0
         // 版のサイズ
@@ -67,12 +68,12 @@ export default class ReversiCanvas {
         this.squareSize = this.layout.squareSize
     }
 
-    public drawBackground = (): void => {
+    public drawBackground (): void {
         this.context.fillStyle = "#afa";
         this.context.fillRect(0, 0, this.canvas.w, this.canvas.h)
     }
 
-    public drawSquareAll = (): void => {
+    public drawSquareAll (): void {
         this.context.fillStyle = "#0000ee"
         this.editor.ec.fillMarginRect(this.context, this.layout.boardX, this.layout.boardY, this.layout.boardW, this.layout.boardH, -2)
         this.rMain.scanBoard((i: number, x: number, y: number) => {
@@ -80,7 +81,7 @@ export default class ReversiCanvas {
         })
     }
 
-    public drawSquare = (x: number, y: number) => {
+    public drawSquare (x: number, y: number) {
         let r: any = this.xyToReal(x, y)
         let marginOut: number = 1
         let marginIn: number = 2
@@ -103,13 +104,13 @@ export default class ReversiCanvas {
         let h: any = rect.h
     }
 
-    private xyToReal = (x: number, y: number): any => {
+    private xyToReal (x: number, y: number): any {
         let realX: number = this.layout.boardX + this.squareSize * x
         let realY: number = this.layout.boardY + this.squareSize * y
         return { x: realX, y: realY }
     }
 
-    public resizeToken = (): void => {
+    public resizeToken (): void {
         for (let i = 0; i < 2; i++) {
             let token = this.rm.imgs["tkn" + i]
             console.log(`token: ${token}`)
@@ -119,7 +120,7 @@ export default class ReversiCanvas {
         }
     }
 
-    public drawToken = (x: number, y: number, p: number) => {// p: EachPlayer
+    public drawToken (x: number, y: number, p: number) {// p: EachPlayer
         if (p < 0 || 1 < p) return
         //
         let r = this.xyToReal(x, y)
@@ -128,7 +129,7 @@ export default class ReversiCanvas {
         this.context.drawImage(this.rm.imgs["tkn" + p], r.x, r.y)
     }
 
-    private drowPlayerScore = (player: number, score: number):void => {
+    private drowPlayerScore (player: number, score: number):void {
         let sscore: string = ("0" + String(score)).substr(-2)
         let l = this.layout
         let lScore = l.playerScore[player]
@@ -143,7 +144,7 @@ export default class ReversiCanvas {
         console.log(this.context.font)
     }
 
-    public drowPlayerScores = (): void => {
+    public drowPlayerScores (): void {
         this.drowPlayerScore(0, this.rMain.score[0])
         this.drowPlayerScore(1, this.rMain.score[1])
     }

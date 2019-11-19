@@ -3,7 +3,7 @@ import EditorCanvas from '../Editor/EditorCanvas'
 export default class ResourceManager {
     public imgs: { [key: string]: HTMLImageElement } = {}
     public sounds: { [key: string]: ResourceSound } = {}
-    public loadImage = (name: string, url: string): Promise<boolean> => {
+    public loadImage (name: string, url: string): Promise<boolean> {
         let func = (resolve: Function, reject: Function) => {
             let image: HTMLImageElement = new Image()
             this.imgs[name] = image
@@ -16,7 +16,7 @@ export default class ResourceManager {
         return new Promise(func)
     }
 
-    public loadFont = (font: string): Promise<any> => {
+    public loadFont (font: string): Promise<any> {
         let ec: EditorCanvas = new EditorCanvas()
         let c: CanvasObj = ec.generateCanvas(1, 1)
         // let tryCount: number = 0
@@ -31,7 +31,7 @@ export default class ResourceManager {
         })
     }
 
-    public loadAudio = async (name: string, url: string, type: string = 'bgm'): Promise<any> => {
+    public async loadAudio (name: string, url: string, type: string = 'bgm'): Promise<any> {
         this.initAudio()
         if (type === 'se') {
             await this.loadAudioSE(name, url)
@@ -39,8 +39,7 @@ export default class ResourceManager {
             await this.loadAudioBGM(name, url)
         }
     }
-    private loadAudioBGM = async (name: string, url: string): Promise<any> => {
-        // not implmented yet
+    private async loadAudioBGM (name: string, url: string): Promise<any> {
         return new Promise(
             (resolve: Function, reject: Function) => {
                 console.log(name, url)
@@ -65,8 +64,7 @@ export default class ResourceManager {
             }
         )
     }
-    private loadAudioSE = async (name: string, url: string): Promise<any> => {
-        // not implmented yet
+    private async loadAudioSE (name: string, url: string): Promise<any> {
         // SEの場合は、SEが重複再生可能なように複数読み込んでおく
         return new Promise(
             (resolve: Function, reject: Function) => {
@@ -75,12 +73,12 @@ export default class ResourceManager {
             }
         )
     }
-    private initAudio = () => {
+    private initAudio () {
         // not implmented yet
         // Audioの使用可否をチェック
         // 
     }
-    public playAudio = (name: string) => {
+    public playAudio (name: string) {
         this.sounds[name].audio.play()
     }
 }

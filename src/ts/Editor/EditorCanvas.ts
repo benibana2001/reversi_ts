@@ -1,7 +1,7 @@
 import { CanvasObj } from '../Util'
 export default class EditorCanvas {
     private _scale: number = 1
-    public generateCanvas = (w: number, h: number, scale: number = 1): CanvasObj => {
+    public generateCanvas (w: number, h: number, scale: number = 1): CanvasObj {
         if (!scale) scale = 1
         let canvas: HTMLCanvasElement = document.createElement('canvas')
         canvas.width = w * scale
@@ -18,7 +18,7 @@ export default class EditorCanvas {
         return obj
     }
 
-    public initCanvas = (id: string, w: number, h: number, scale: number): CanvasObj => {
+    public initCanvas (id: string, w: number, h: number, scale: number): CanvasObj {
         this._scale = scale
         let c: CanvasObj = this.generateCanvas(w, h, scale)
         let elem: HTMLElement = document.getElementById(id)
@@ -26,7 +26,7 @@ export default class EditorCanvas {
         return c
     }
 
-    public fillMarginRect = (context: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, m: number): any => {
+    public fillMarginRect (context: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, m: number): any {
         let rect: any = {
             x: x + m,
             y: y + m,
@@ -38,7 +38,7 @@ export default class EditorCanvas {
     }
 
     // 元画像 s, 作る画像 d (cf: http://www.htmq.com/canvas/drawImage_s.shtml)
-    public getScaledImg = (image:HTMLElement, sx: number, sy: number, sw: number, sh: number, dw: number, dh: number): any => {
+    public getScaledImg (image:HTMLElement, sx: number, sy: number, sw: number, sh: number, dw: number, dh: number): any {
         let ratioX: number = dw / sw
         let ratioY: number = dh / sh
         let imgElem: HTMLImageElement = <HTMLImageElement>image

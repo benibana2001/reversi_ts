@@ -1,13 +1,13 @@
 export default class EditorGameBase {
-    private getWinH = (): number => {
+    private getWinH (): number {
         return window.innerHeight
     }
 
-    private getWinW = (): number => {
+    private getWinW (): number {
         return window.innerWidth
     }
 
-    public getFitSz = (w: number, h: number): { w: number, h: number } => {
+    public getFitSz (w: number, h: number): { w: number, h: number } {
         let winH: number = this.getWinH()
         let winW: number = this.getWinW()
         let resW: number
@@ -27,7 +27,7 @@ export default class EditorGameBase {
         }
     }
 
-    public inRange = (cX: number, cY: number, x: number, y: number, w: number, h: number): boolean => {
+    public inRange (cX: number, cY: number, x: number, y: number, w: number, h: number): boolean {
         if (cX < x || x + w <= cX) return false
         if (cY < y || y + h <= cY) return false
         return true

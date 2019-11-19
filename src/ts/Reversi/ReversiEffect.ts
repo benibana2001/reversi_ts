@@ -7,6 +7,7 @@ export default class ReversiEffect {
     public editor: Editor = new Editor()
     // TODO: ReversiCanvasを引き剥がす
     public rc: ReversiCanvas
+    //----------------------------------------
     //
     constructor(rm: ResourceManager, rc: ReversiCanvas) {
         this.rm = rm
@@ -21,7 +22,7 @@ export default class ReversiEffect {
         this.editor.animAdd(name, func)
     }
     //
-    public message = async (text: string): Promise<any> => {
+    public async message (text: string): Promise<any> {
         let timeMax: number = 750
         let name: string = 'message'
         //

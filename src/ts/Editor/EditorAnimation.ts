@@ -8,19 +8,19 @@ export default class EditorAnimation {
         diff: 0,
         sum: 0
     }
-    public add = (name: string, func: Function): void => {
+    public add (name: string, func: Function): void {
         let anmObj: AnimationObj = {
             name: name,
             func: func
         }
         this.updateArr.push(anmObj)
     }
-    public remove = (name: string): void => {
+    public remove (name: string): void {
         for(let i = 0; i < this.updateArr.length; i++) {
             if (name === this.updateArr[i].name) this.updateArr.splice(i, 1)
         }
     }
-    private update = (): void => {
+    private update (): void {
         this.time.now = new Date()
         // console.log(`this.time.now: ${this.time.now}`)
         // console.log(`this.time.old: ${this.time.old}`)
@@ -31,18 +31,18 @@ export default class EditorAnimation {
             this.updateArr[i].func(this.time)
         }
     }
-    public start = (): void => {
+    public start (): void {
         let animationFunc = (): void => {
             this.update()
             this.animationID = this.rqstAnmFrm(animationFunc)
         }
         animationFunc()
     }
-    public stop = (): void => {
+    public stop (): void {
         if (this.animationID === null) return
         this.cnclAnmFrm(this.animationID)
     }
-    private rqstAnmFrm = (cb: FrameRequestCallback): number => {
+    private rqstAnmFrm (cb: FrameRequestCallback): number {
         let id: number = (
             window.requestAnimationFrame ||
             window.webkitRequestAnimationFrame ||
@@ -52,7 +52,7 @@ export default class EditorAnimation {
         )(cb)
         return id
     }
-    private cnclAnmFrm = (id: number): void => {
+    private cnclAnmFrm (id: number): void {
         (
             window.cancelAnimationFrame ||
             window.webkitCancelAnimationFrame ||
