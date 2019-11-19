@@ -18,15 +18,48 @@ export default class ReversiMain {
     public score: number[] = [0, 0]
     public enableSquares: number[] = []
     public isEnd: boolean = false
-    //
-    public init = ():void => {
-        console.log("START GAME")
+    //----------------------------------------
+    // 
+    public init(): void {
+        console.log("INITIALIZE GAME")
+        // Load Resources
+
+        // Init Canvas
+
+        // Risize Token
+
+        // Init Reversi Effect
+
+        // Start
+        this.start()
+
         // 全てのマスを空に
 
         // 置石x4
     }
     //
-    public scanBoard = (f: Function): void => {
+    private start():  void {
+    
+    }
+    //
+    private updateCanvas():  void {
+    
+    }
+    //
+    private buttonStart ():  void {
+    
+    }
+    //
+    private initClick ():  void {
+    
+    }
+    //
+    private clickBoard ():  void {
+    
+    }
+
+    //
+    public scanBoard (f: Function): void {
         let max: number = this.w * this.h
         for (let i = 0; i < max; i++) {
             let x = i % this.w
