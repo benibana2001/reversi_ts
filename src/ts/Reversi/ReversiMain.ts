@@ -7,7 +7,13 @@ export default class ReversiMain {
     //
     public w: number = 8
     public h: number = 8
-    public board: { x: number, y: number }[] = []// all squares state
+    /**
+     * 'board' Indicats Each Square Status Like This.
+     * [0, 0, 0
+     *  0, 0, 0,
+     *  0, 0, 0]
+     */
+    public board: number[] = []
     public player: number = 0
     public playerOld: number = 1
     // TODO: check playerType
@@ -40,6 +46,12 @@ export default class ReversiMain {
     /**
      * XYToI
      * XY座標から要素の(配列表記上の)位置を求める
+     * At The TIme Board Is Like beneath,
+     * [0, 0, 0
+     *  0, 0, 0
+     *  0, 1, 0]
+     * If You Want To Get {x: line2, y: line3}, You Would Use 'ary[8].
+     * But If You Don't Know '8', You Can't Get Precise Value. So, This Function Return 'i' from {x, y}.
      */
     public XYToI(x: number, y: number): number {
         if (x < 0 || y < 0) return
@@ -61,12 +73,32 @@ export default class ReversiMain {
      * If You Can Put Token, It Means There Is A Blank Space Over Enemies Token.
      * - Example: This Pattern You Can Put Token => / (You) (Enemy) (Enemy) (Enemy) (Blank)/
      * - Example: This Pattern You Can't Put Token => / (You) (You) (Blank)/
-     * This Function Returns RegExp For Check These Pattern.
+     * So That, You Could Get RegExp Like This: /(You)(Enemy)+B/ 
      */
-    public scanLine(board: {x: number, y: number}, x: number, y:number, directionX: {x: number, y: number}, directionY: {x: number, y: number}): { patern: string, ary: { x: number, y: number }[] } {
-        let patern: string = ""
+    public scanLine(board: number[], x: number, y: number, directionX: number, directionY: number): { pattern: string, ary: { x: number, y: number }[] } {
+        // This indicate RegExp Pattern.
+        let pattern: string = ""
+        // This indicates Position Of Each Square Checked By This Process.
         let ary: { x: number, y: number }[] = []
-        return { patern: patern, ary: ary }
+        // Start Scan Line
+        for (let m = 1; ; m++) {
+            let currentX: number = x + directionX + m
+            let currentY: number = y + directionY + m
+            let i: number = this.XYToI(currentX, currentY)
+            // If Out Of The Board, Process Should Be End. 
+            // At The End Of Loop Sequence Finish, You Absolutely Reach To Here And Break Loop.
+            if (i === undefined) break
+            //
+            let player: number = board[i]
+            if (player === this.BLANK) {
+                pattern += 'B'
+            } else {
+                pattern += player
+            }
+            ary.push({ x: currentY, y: currentY })
+        }
+
+        return { pattern: pattern, ary: ary }
     }
 
     /**
@@ -84,9 +116,9 @@ export default class ReversiMain {
             // About Each Square, If Can Put Token Return Square Info.
             let l: number = this.DIRECTION.length
             for (let j = 0; j < l; j++) {
-                let line: { patern: string, ary: { x: number, y: number }[] } = this.scanLine(board, x, y, this.DIRECTION[j].x, this.DIRECTION[j].y)
+                let line: { pattern: string, ary: { x: number, y: number }[] } = this.scanLine(board, x, y, this.DIRECTION[j].x, this.DIRECTION[j].y)
                 let re: RegExp = new RegExp("^" + playerEnemy + "+" + player)
-                if (line.patern.match(re)) {
+                if (line.pattern.match(re)) {
                     res.push({ x: x, y: y })
                     return
                 }
