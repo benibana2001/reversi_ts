@@ -38,7 +38,9 @@ export default class ReversiMain {
     	this.board[this.XYToI(3, 3)] = this.board[this.XYToI(4, 4)] = 0
     	this.board[this.XYToI(3, 4)] = this.board[this.XYToI(4, 3)] = 1
     	// Decide Geme Over
-    	this.enableSquares = this.getEnableSquares(this.board, this.player)
+        this.enableSquares = this.getEnableSquares(this.board, this.player)
+        console.log(this.enableSquares)
+        // TODO: 実装の必要あり
         // let enableSquares2 = this.getEnableSquares(this.board, 1 - this.player)
         // Caluclate Score
         this.score[0] = this.calcScore(0, this.board)
@@ -58,8 +60,12 @@ export default class ReversiMain {
      */
     public XYToI(x: number, y: number): number {
     	if (x < 0 || y < 0) return
-    	if (x >= this.w || y >= this.h) return
-    	return (x + y * this.w) | 0
+        if (x >= this.w || y >= this.h) return
+        if (x === 0 && y ===0) {
+            // console.log('this')
+            // console.log(x + y * this.w)
+        }
+        return (x + y * this.w) | 0
     }
 
     /**
@@ -92,16 +98,19 @@ export default class ReversiMain {
     	for (let m = 1; ; m++) {
     		let currentX: number = x + directionX + m
     		let currentY: number = y + directionY + m
-    		let i: number = this.XYToI(currentX, currentY)
+            let i: number = this.XYToI(currentX, currentY)
+            // console.log(`x: ${x}, y: ${y}`)
+            // console.log(`i: ${i}`)
     		// If Out Of The Board, Process Should Be End. 
     		// At The End Of Loop Sequence Finish, You Absolutely Reach To Here And Break Loop.
     		if (i === undefined) break
     		//
-    		let player: number = board[i]
-    		if (player === this.BLANK) {
+            let square: number = board[i]
+            // console.log(square)
+    		if (square === this.BLANK) {
     			pattern += 'B'
     		} else {
-    			pattern += player
+    			pattern += square
     		}
     		ary.push({ x: currentY, y: currentY })
     	}
@@ -122,17 +131,20 @@ export default class ReversiMain {
     		// If Already Set Token, Don't Do Anything
     		if (board[i] !== this.BLANK) return
     		// About Each Square, If Can Put Token Return Square Info.
-    		let l: number = this.DIRECTION.length
+            let l: number = this.DIRECTION.length
     		for (let j = 0; j < l; j++) {
     			let line: { pattern: string, ary: { x: number, y: number }[] } = this.scanLine(board, x, y, this.DIRECTION[j].x, this.DIRECTION[j].y)
-    			let re: RegExp = new RegExp('^' + playerEnemy + '+' + player)
+                let re: RegExp = new RegExp('^' + playerEnemy + '+' + player)
+                // console.log(line)
+                // console.log(re)
     			if (line.pattern.match(re)) {
+                    console.log('hit')
     				res.push({ x: x, y: y })
     				return
     			}
     		}
     	})
-    	return res
+        return res
     }
 
     /**

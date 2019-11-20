@@ -43,14 +43,24 @@ export default class ReversiCore {
     private start(): void {
     	// Init Board
     	this.rmain.init()
-    	// Update Canvas
+        // Update Canvas
+        this.updateCanvas(true)
 
     	// Unlock Click Locking
 
     	// Play BGM <= ?????
     }
     //
-    private updateCanvas(): void {
+    private updateCanvas(needUpdate: boolean): void {
+        if (needUpdate) {
+            // Re Render
+            this.rc.drawBackground()
+            this.rc.drawSquareAll()
+            this.rc.drawTokenAll(this.rmain.board)
+            this.rc.drawEnableSquaresAll()
+        } else {
+            // Draw From Cache
+        }
 
     }
     //
