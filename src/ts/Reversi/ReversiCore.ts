@@ -1,10 +1,10 @@
-import ReversiCanvas from "./ReversiCanvas"
-import ResourceManager from "../ResourceManager/ResourceManager"
-import ReversiEffect from "./ReversiEffect"
+import ReversiCanvas from './ReversiCanvas'
+import ResourceManager from '../ResourceManager/ResourceManager'
+import ReversiEffect from './ReversiEffect'
 import tkn0 from '../../img/icon_menherachan04_28.jpg'
 import tkn1 from '../../img/icon_menherachan04_25.jpg'
 import bgm01 from '../../snd/Jigsaw_Puzzle.mp3'
-import ReversiMain from "./ReversiMain"
+import ReversiMain from './ReversiMain'
 
 export default class ReversiCore {
     public rmngr = new ResourceManager()
@@ -13,41 +13,41 @@ export default class ReversiCore {
     public re = new ReversiEffect(this.rmngr, this.rc)
     //----------------------------------------
     public init(): void {
-        console.log("INITIALIZE GAME")
-        // Load Resources
-        let r: Promise<any>[] = []
-        r.push(this.rmngr.loadImage("tkn0", tkn0))
-        r.push(this.rmngr.loadImage("tkn1", tkn1));
-        r.push(this.rmngr.loadAudio("bgm01", bgm01));
-        //
-        Promise.all(r).then(() => {
+    	console.log('INITIALIZE GAME')
+    	// Load Resources
+    	let r: Promise<any>[] = []
+    	r.push(this.rmngr.loadImage('tkn0', tkn0))
+    	r.push(this.rmngr.loadImage('tkn1', tkn1))
+    	r.push(this.rmngr.loadAudio('bgm01', bgm01))
+    	//
+    	Promise.all(r).then(() => {
 
-            // Init Canvas
-            this.rc.initCanvas()
-            // Risize Token
-            this.rc.resizeToken()
-            // Start
-            this.start()
+    		// Init Canvas
+    		this.rc.initCanvas()
+    		// Risize Token
+    		this.rc.resizeToken()
+    		// Start
+    		this.start()
 
-            // Set Animation
+    		// Set Animation
 
-            // Init UI
+    		// Init UI
 
-            // Set Button
+    		// Set Button
 
-            // Play BGM
+    		// Play BGM
 
-        })
+    	})
     }
     //
     private start(): void {
-        // Init Board
-        this.rmain.init()
-        // Update Canvas
+    	// Init Board
+    	this.rmain.init()
+    	// Update Canvas
 
-        // Unlock Click Locking
+    	// Unlock Click Locking
 
-        // Play BGM <= ?????
+    	// Play BGM <= ?????
     }
     //
     private updateCanvas(): void {
@@ -66,6 +66,6 @@ export default class ReversiCore {
 
     }
 
-    //
+	//
 
 }
