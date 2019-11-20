@@ -7,7 +7,7 @@ export default class ReversiMain {
     //
     public w: number = 8
     public h: number = 8
-    public board: number[] = []// all squares state
+    public board: { x: number, y: number }[] = []// all squares state
     public player: number = 0
     public playerOld: number = 1
     // TODO: check playerType
@@ -16,7 +16,7 @@ export default class ReversiMain {
     public reverseTokens: number[] = []// 裏返った石配列
     //
     public score: number[] = [0, 0]
-    public enableSquares: number[] = []
+    public enableSquares: { x: number, y: number }[] = []
     public isEnd: boolean = false
     //----------------------------------------
     // 
@@ -31,8 +31,10 @@ export default class ReversiMain {
         // Set Token x 4 (prepare for game start)
         this.board[this.XYToI(3, 3)] = this.board[this.XYToI(4, 4)] = 0
         this.board[this.XYToI(3, 4)] = this.board[this.XYToI(4, 3)] = 0
-
         // Decide Geme Over
+        this.enableSquares = this.getEnableSquares(this.board, this.player)
+        let enableSquares2 = this.getEnableSquares(this.board, 1 - this.player)
+
     }
 
     /**
@@ -55,9 +57,16 @@ export default class ReversiMain {
     /**
      * scanLine
      * 1列走査
+     * This Function Return Regular Expression.
+     * If You Can Put Token, It Means There Is A Blank Space Over Enemies Token.
+     * - Example: This Pattern You Can Put Token => / (You) (Enemy) (Enemy) (Enemy) (Blank)/
+     * - Example: This Pattern You Can't Put Token => / (You) (You) (Blank)/
+     * This Function Returns RegExp For Check These Pattern.
      */
-    public scanLine(): void {
-
+    public scanLine(board: {x: number, y: number}, x: number, y:number, directionX: {x: number, y: number}, directionY: {x: number, y: number}): { patern: string, ary: { x: number, y: number }[] } {
+        let patern: string = ""
+        let ary: { x: number, y: number }[] = []
+        return { patern: patern, ary: ary }
     }
 
     /**
@@ -65,7 +74,7 @@ export default class ReversiMain {
      * 配置可能マス配列の取得
      * Return All Squares Info-Array Which Could Be Put Token
      */
-    public getEnableSquares(board: number[], player: number): void {
+    public getEnableSquares(board: number[], player: number): { x: number, y: number }[] {
         let res: { x: number, y: number }[] = []
         let playerEnemy: number = 1 - player
         // Check All Squares
@@ -82,9 +91,8 @@ export default class ReversiMain {
                     return
                 }
             }
-
-        }
-        )
+        })
+        return res
     }
 
     /**
