@@ -36,11 +36,14 @@ export default class ReversiMain {
     	})
     	// Set Token x 4 (prepare for game start)
     	this.board[this.XYToI(3, 3)] = this.board[this.XYToI(4, 4)] = 0
-    	this.board[this.XYToI(3, 4)] = this.board[this.XYToI(4, 3)] = 0
+    	this.board[this.XYToI(3, 4)] = this.board[this.XYToI(4, 3)] = 1
     	// Decide Geme Over
     	this.enableSquares = this.getEnableSquares(this.board, this.player)
-    	// let enableSquares2 = this.getEnableSquares(this.board, 1 - this.player)
-
+        // let enableSquares2 = this.getEnableSquares(this.board, 1 - this.player)
+        // Caluclate Score
+        this.score[0] = this.calcScore(0, this.board)
+        this.score[1] = this.calcScore(1, this.board)
+        console.log(this.score)
     }
 
     /**
@@ -61,9 +64,14 @@ export default class ReversiMain {
 
     /**
      * calcScore
+     * Scan All Squares And Return How Many Number Of Token Each Player Has.
      */
-    public calcScore(): void {
-
+    public calcScore(player: number, board: number[]): number {
+        let count: number = 0
+        this.scanBoard((i: number) => {
+            if (board[i] === player) count++
+        })
+        return count
     }
 
     /**
