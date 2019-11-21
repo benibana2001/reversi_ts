@@ -69,7 +69,7 @@ export default class ReversiCanvas {
     }
 
     public drawBackground (): void {
-        this.context.fillStyle = '#afa';
+        this.context.fillStyle = '#afa'
         this.context.fillRect(0, 0, this.canvas.w, this.canvas.h)
     }
 
@@ -99,9 +99,9 @@ export default class ReversiCanvas {
         //
         // this.context.fillStyle = "#086319"
         this.context.fillStyle = '#aacdff'
-        let rect: any = this.editor.ec.fillMarginRect(this.context, r.x, r.y, this.squareSize, this.squareSize, marginOut + marginIn)
-        let w: any = rect.w
-        let h: any = rect.h
+        // let rect: any = this.editor.ec.fillMarginRect(this.context, r.x, r.y, this.squareSize, this.squareSize, marginOut + marginIn)
+        // let w: any = rect.w
+        // let h: any = rect.h
     }
 
     /**
