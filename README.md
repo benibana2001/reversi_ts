@@ -1,4 +1,4 @@
-under depelopment... 😌
+[under depelopment...](https://reversi-ts-whasse.firebaseapp.com) 😌
 
 ---
 ## TLDL
