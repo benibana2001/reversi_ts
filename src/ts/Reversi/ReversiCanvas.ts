@@ -1,10 +1,11 @@
 import ResourceManager from '../ResourceManager/ResourceManager'
 import { CanvasObj} from 'src/ts/Util'
-import ReversiMain from './ReversiMain'
+// import ReversiMain from './ReversiMain'
 import Editor from '../Editor/Editor'
+import Base from './ReversiBase'
 
-export default class ReversiCanvas {
-    private rMain: ReversiMain = new ReversiMain()
+export default class ReversiCanvas extends Base {
+    // private rMain: ReversiMain = new ReversiMain()
     private rm: ResourceManager = null
     private editor: Editor = new Editor()
     //
@@ -26,6 +27,7 @@ export default class ReversiCanvas {
     //----------------------------------------
     //
     constructor(rm: ResourceManager) {
+        super()
         this.rm = rm
     }
 
@@ -47,15 +49,11 @@ export default class ReversiCanvas {
         // 1マスのサイズ
         this.layout.squareSize = (this.canvas.w * 0.1) | 0
         // 版のサイズ
-        this.layout.boardW = this.layout.squareSize * this.rMain.w
-        this.layout.boardH = this.layout.squareSize * this.rMain.h
+        this.layout.boardW = this.layout.squareSize * this.status.w
+        this.layout.boardH = this.layout.squareSize * this.status.h
         // 版の位置 左上すみをベースに計算
         this.layout.boardX = ((this.canvas.w - this.layout.boardW) / 2) | 0
         this.layout.boardY = this.layout.squareSize * 2// PlayerScore表示のために少し下げる
-        // console.log(`this.layout.boardW: ${this.layout.boardW}`)
-        // console.log(`this.layout.boardH: ${this.layout.boardH}`)
-        // console.log(`this.layout.boardX: ${this.layout.boardX}`)
-        // console.log(`this.layout.boardY: ${this.layout.boardY}`)
         // 
         this.layout.playerScore[0].x = this.layout.boardX
         this.layout.playerScore[1].x = this.layout.boardX + this.layout.boardW
@@ -76,7 +74,7 @@ export default class ReversiCanvas {
     public drawSquareAll (): void {
         this.context.fillStyle = '#0000ee'
         this.editor.ec.fillMarginRect(this.context, this.layout.boardX, this.layout.boardY, this.layout.boardW, this.layout.boardH, -2)
-        this.rMain.scanBoard((i: number, x: number, y: number) => {
+        this.status.scanBoard((i: number, x: number, y: number) => {
             this.drawSquare(x, y)
         })
     }
@@ -110,7 +108,7 @@ export default class ReversiCanvas {
     public drawEnableSquaresAll ():  void {
         // TODO: rMainインスタンスがこのクラスとReversiCore.tsクラスで建てられているためrMainのプライベートメソッドが異なる,違うものを参照してしまう。
         // Reversi.Status.tsを用意して状態管理用のクラスとする.
-        let squares: { x: number, y: number }[] = this.rMain.enableSquares[0]
+        let squares: { x: number, y: number }[] = this.status.enableSquares[0]
         console.log(squares)
         let l: number = squares.length
         for(let i = 0; i < l; i++) {
@@ -167,7 +165,7 @@ export default class ReversiCanvas {
      * drawTokenAll
      */
     public drawTokenAll (board: number[]):  void {
-        this.rMain.scanBoard((i: number, x: number, y: number) => {
+        this.status.scanBoard((i: number, x: number, y: number) => {
             this.drawToken(x, y, board[i])
         })
     }
@@ -188,7 +186,7 @@ export default class ReversiCanvas {
     }
 
     public drowPlayerScores (): void {
-        this.drowPlayerScore(0, this.rMain.score[0])
-        this.drowPlayerScore(1, this.rMain.score[1])
+        this.drowPlayerScore(0, this.status.score[0])
+        this.drowPlayerScore(1, this.status.score[1])
     }
 }

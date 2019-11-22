@@ -1,6 +1,6 @@
-import ReversiCanvas from "./ReversiCanvas";
-import ResourceManager from "../ResourceManager/ResourceManager";
-import Editor from "../Editor/Editor";
+import ReversiCanvas from './ReversiCanvas'
+import ResourceManager from '../ResourceManager/ResourceManager'
+import Editor from '../Editor/Editor'
 
 export default class ReversiEffect {
     private rm: ResourceManager
@@ -43,12 +43,12 @@ export default class ReversiEffect {
                 //
                 if (timeDiff < timeMax) {
                     context.save()
-                    context.textAlign = "center"
-                    context.textBaseline = "middle"
-                    context.strokeStyle = "#fff"
-                    context.fillStyle = "#000"
+                    context.textAlign = 'center'
+                    context.textBaseline = 'middle'
+                    context.strokeStyle = '#fff'
+                    context.fillStyle = '#000'
                     context.lineWidth = l.fontSize / 10//描画する線の太さ
-                    context.font = l.fontSize * 2 + "px '" + l.fontFamily + "'"
+                    context.font = l.fontSize * 2 + 'px \'' + l.fontFamily + '\''
                     // 以下、アニメーション部分
                     context.globalAlpha = ratioA
                     for (let i = -1; i <= 1; i += 2) {// 2回描画 左から登場と右から登場するアニメーション
@@ -56,7 +56,7 @@ export default class ReversiEffect {
                         context.fillText(text, centerX + w * ratioX * i, centerY)// 文字の塗りつぶし
                     }
                     context.restore()
-                    console.log("do restore")
+                    console.log('do restore')
                 } else {
                     this.editor.ea.remove(name)
                     // console.log("resolve")

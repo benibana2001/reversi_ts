@@ -4,14 +4,19 @@ import ReversiEffect from './ReversiEffect'
 import tkn0 from '../../img/icon_menherachan04_28.jpg'
 import tkn1 from '../../img/icon_menherachan04_25.jpg'
 import bgm01 from '../../snd/Jigsaw_Puzzle.mp3'
-import ReversiMain from './ReversiMain'
+// import ReversiMain from './ReversiMain'
+import Base from './ReversiBase'
 
-export default class ReversiCore {
+export default class ReversiCore extends Base{
     public rmngr = new ResourceManager()
-    public rmain = new ReversiMain()
+    // public rmain = new ReversiMain()
     public rc = new ReversiCanvas(this.rmngr)
     public re = new ReversiEffect(this.rmngr, this.rc)
     //----------------------------------------
+    constructor(){
+        super()
+    }
+    //
     public init(): void {
     	console.log('INITIALIZE GAME')
     	// Load Resources
@@ -42,7 +47,7 @@ export default class ReversiCore {
     //
     private start(): void {
     	// Init Board
-    	this.rmain.init()
+    	// this.rmain.init()
         // Update Canvas
         this.updateCanvas(true)
 
@@ -56,7 +61,7 @@ export default class ReversiCore {
             // Re Render
             this.rc.drawBackground()
             this.rc.drawSquareAll()
-            this.rc.drawTokenAll(this.rmain.board)
+            this.rc.drawTokenAll(this.status.board)
             this.rc.drawEnableSquaresAll()
         } else {
             // Draw From Cache
@@ -75,7 +80,4 @@ export default class ReversiCore {
     private clickBoard(): void {
 
     }
-
-	//
-
 }
