@@ -96,8 +96,8 @@ export default class ReversiMain {
     	let ary: { x: number, y: number }[] = []
     	// Start Scan Line
     	for (let m = 1; ; m++) {
-    		let currentX: number = x + directionX + m
-    		let currentY: number = y + directionY + m
+    		let currentX: number = x + directionX * m
+    		let currentY: number = y + directionY * m
             let i: number = this.XYToI(currentX, currentY)
             // console.log(`x: ${x}, y: ${y}`)
             // console.log(`i: ${i}`)
@@ -112,9 +112,11 @@ export default class ReversiMain {
     		} else {
     			pattern += square
     		}
-    		ary.push({ x: currentY, y: currentY })
-    	}
-
+    		ary.push({ x: currentX, y: currentY })
+        }
+        console.log(`x: ${x}, y: ${y}, dx: ${directionX}, dy: ${directionY}`)
+        console.log(pattern)
+        console.log(ary)
     	return { pattern: pattern, ary: ary }
     }
 
@@ -143,7 +145,8 @@ export default class ReversiMain {
     				return
     			}
     		}
-    	})
+        })
+        console.log(board)
         return res
     }
 
