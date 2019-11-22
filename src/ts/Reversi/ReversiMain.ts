@@ -20,9 +20,10 @@ export default class ReversiMain {
     public playerType: string[] = [this.PLAYERTYPE.man, this.PLAYERTYPE.com]
     public put: {} = {}// 最終置き位置の座標
     public reverseTokens: number[] = []// 裏返った石配列
-    //
+    // Points Of Each Player.
     public score: number[] = [0, 0]
-    public enableSquares: { x: number, y: number }[] = []
+    // Squares Each Player Can Put.
+    public enableSquares: { x: number, y: number }[][] = []
     public isEnd: boolean = false
     //----------------------------------------
     // 
@@ -38,14 +39,13 @@ export default class ReversiMain {
     	this.board[this.XYToI(3, 3)] = this.board[this.XYToI(4, 4)] = 0
     	this.board[this.XYToI(3, 4)] = this.board[this.XYToI(4, 3)] = 1
     	// Decide Geme Over
-        this.enableSquares = this.getEnableSquares(this.board, this.player)
-        console.log(this.enableSquares)
-        // TODO: 実装の必要あり
-        // let enableSquares2 = this.getEnableSquares(this.board, 1 - this.player)
+        this.enableSquares[0] = this.getEnableSquares(this.board, this.player)
+        this.enableSquares[1] = this.getEnableSquares(this.board, 1 - this.player)
+        this.isEnd = (this.enableSquares[0].length === 0 && this.enableSquares[1].length === 0)
         // Caluclate Score
         this.score[0] = this.calcScore(0, this.board)
         this.score[1] = this.calcScore(1, this.board)
-        console.log(this.score)
+        console.log(this.enableSquares)
     }
 
     /**
@@ -99,14 +99,11 @@ export default class ReversiMain {
     		let currentX: number = x + directionX * m
     		let currentY: number = y + directionY * m
             let i: number = this.XYToI(currentX, currentY)
-            // console.log(`x: ${x}, y: ${y}`)
-            // console.log(`i: ${i}`)
     		// If Out Of The Board, Process Should Be End. 
     		// At The End Of Loop Sequence Finish, You Absolutely Reach To Here And Break Loop.
     		if (i === undefined) break
     		//
             let square: number = board[i]
-            // console.log(square)
     		if (square === this.BLANK) {
     			pattern += 'B'
     		} else {
@@ -114,9 +111,9 @@ export default class ReversiMain {
     		}
     		ary.push({ x: currentX, y: currentY })
         }
-        console.log(`x: ${x}, y: ${y}, dx: ${directionX}, dy: ${directionY}`)
-        console.log(pattern)
-        console.log(ary)
+        // console.log(`x: ${x}, y: ${y}, dx: ${directionX}, dy: ${directionY}`)
+        // console.log(pattern)
+        // console.log(ary)
     	return { pattern: pattern, ary: ary }
     }
 
@@ -140,13 +137,12 @@ export default class ReversiMain {
                 // console.log(line)
                 // console.log(re)
     			if (line.pattern.match(re)) {
-                    console.log('hit')
     				res.push({ x: x, y: y })
     				return
     			}
     		}
         })
-        console.log(board)
+        console.log(res)
         return res
     }
 

@@ -108,7 +108,10 @@ export default class ReversiCanvas {
      * drawEnableSquaresAll
      */
     public drawEnableSquaresAll ():  void {
-        let squares: { x: number, y: number }[] = this.rMain.enableSquares
+        // TODO: rMainインスタンスがこのクラスとReversiCore.tsクラスで建てられているためrMainのプライベートメソッドが異なる,違うものを参照してしまう。
+        // Reversi.Status.tsを用意して状態管理用のクラスとする.
+        let squares: { x: number, y: number }[] = this.rMain.enableSquares[0]
+        console.log(squares)
         let l: number = squares.length
         for(let i = 0; i < l; i++) {
             this.drawEnableSquare(squares[i].x, squares[i].y)
