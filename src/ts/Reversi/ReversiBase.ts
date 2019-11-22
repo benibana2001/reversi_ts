@@ -4,4 +4,5 @@ export default class ReversiBase {
     constructor() {
         this.status = Status.getInstance()
     }
+    // TODO: RsourceManagerをSingletomで持たせる
 }
