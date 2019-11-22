@@ -1,5 +1,6 @@
 import ReversiCanvas from './ReversiCanvas'
 import ReversiEffect from './ReversiEffect'
+import ReversiUi from './ReversiUi'
 import tkn0 from '../../img/icon_menherachan04_28.jpg'
 import tkn1 from '../../img/icon_menherachan04_25.jpg'
 import bgm01 from '../../snd/Jigsaw_Puzzle.mp3'
@@ -8,6 +9,8 @@ import Base from './ReversiBase'
 export default class ReversiCore extends Base{
     public rc = new ReversiCanvas()
     public re = new ReversiEffect(this.rc)
+    public rui = new ReversiUi(this.rc)
+    private isLock = false
     //----------------------------------------
     constructor(){
         super()
@@ -29,13 +32,15 @@ export default class ReversiCore extends Base{
     		this.rc.resizeToken()
     		// Start
     		this.start()
-
-    		// Set Animation
-
+            // Set Animation
+            this.re.animStart()
+            this.re.animAdd('updateCanvas', ()=> {
+                // this.updateCanvas(true)
+            })
     		// Init UI
-
+            this.rui.init()
     		// Set Button
-
+            this.buttonStart('start')
     		// Play BGM
 
     	})
@@ -45,10 +50,11 @@ export default class ReversiCore extends Base{
     	// Init Board
         // Update Canvas
         this.updateCanvas(true)
-
     	// Unlock Click Locking
-
-    	// Play BGM <= ?????
+        this.isLock = false
+        // Play BGM <= ?????
+        // TODO: Set Audio Auto Play
+        // this.resources.playAudio('bgm01')
     }
     //
     private updateCanvas(needUpdate: boolean): void {
@@ -61,11 +67,25 @@ export default class ReversiCore extends Base{
         } else {
             // Draw From Cache
         }
-
     }
     //
-    private buttonStart(): void {
-
+    /**
+     * Create Start Button.
+     * @param text 
+     */
+    private buttonStart(text: string): void {
+        let name: string = 'buttonStart'
+        let w: number = this.rc.canvas.w
+        let h: number = this.rc.canvas.h
+        let buttonW: number = this.rc.layout.squareSize * 4 * 1.2
+        let buttonH: number = this.rc.layout.squareSize * 1.3
+        let buttonX: number = (w - buttonW) / 2
+        let buttonY: number = (h - buttonH) / 2
+        //
+        this.rui.addButton(name, text, buttonX, buttonY, buttonW, buttonH, () => {
+            this.rui.removeButton(name)
+            this.start()
+        })
     }
     //
     private initClick(): void {
