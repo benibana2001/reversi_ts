@@ -1,14 +1,9 @@
-import ResourceManager from '../ResourceManager/ResourceManager'
 import { CanvasObj} from 'src/ts/Util'
-// import ReversiMain from './ReversiMain'
 import Editor from '../Editor/Editor'
 import Base from './ReversiBase'
 
 export default class ReversiCanvas extends Base {
-    // private rMain: ReversiMain = new ReversiMain()
-    private rm: ResourceManager = null
     private editor: Editor = new Editor()
-    //
     public canvas: CanvasObj
     public context: CanvasRenderingContext2D
     private squareSize: number = null
@@ -26,9 +21,8 @@ export default class ReversiCanvas extends Base {
     }
     //----------------------------------------
     //
-    constructor(rm: ResourceManager) {
+    constructor() {
         super()
-        this.rm = rm
     }
 
     public initCanvas (font: string = this.defautlFontFamily): void {
@@ -137,9 +131,9 @@ export default class ReversiCanvas extends Base {
 
     public resizeToken (): void {
         for (let i = 0; i < 2; i++) {
-            let token = this.rm.imgs['tkn' + i]
+            let token = this.resources.imgs['tkn' + i]
             // console.log(`token: ${token}`)
-            this.rm.imgs['tkn' + i] = this.editor.ec.getScaledImg(
+            this.resources.imgs['tkn' + i] = this.editor.ec.getScaledImg(
                 token, 0, 0, token.width, token.height, this.squareSize, this.squareSize
             )
         }
@@ -158,7 +152,7 @@ export default class ReversiCanvas extends Base {
         let r = this.xyToReal(x, y)
         // console.log(this.rm.imgs["tkn" + p].elem) => undefinedになる
         // console.log(this.rm.imgs)
-        this.context.drawImage(this.rm.imgs['tkn' + p], r.x, r.y)
+        this.context.drawImage(this.resources.imgs['tkn' + p], r.x, r.y)
     }
 
     /**

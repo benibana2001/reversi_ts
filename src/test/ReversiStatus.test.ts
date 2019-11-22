@@ -1,5 +1,5 @@
-import ReversiMain from '../ts/Reversi/ReversiMain'
-let rMain: ReversiMain = new ReversiMain()
+import ReversiStatus from '../ts/Reversi/ReversiStatus'
+let status: ReversiStatus = ReversiStatus.getInstance()
 //
 // Emulate The Board Status When Game Is Starting.
 let board: number[] = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 0, 1, -1, -1, -1, -1, -1, -1, 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
@@ -18,7 +18,7 @@ test.each([
         ary: [{ x: 3, y: 4}, { x: 4, y: 4 }, { x: 5, y: 4 }, { x: 6, y: 4 }, { x: 7, y: 4 }]
     }],
 ])('rMain.ScanLine(%i, %i, %i, %i)', (board: number[], x: number, y: number, cX: number, cY: number, expected: any) => {
-    expect(rMain.scanLine(board, x, y, cX, cY)).toMatchObject(expected)
+    expect(status.scanLine(board, x, y, cX, cY)).toMatchObject(expected)
 })
 //
 /*test('basic', () => {

@@ -1,7 +1,4 @@
-import Status from './ReversiStatus'
-
 export default class ReversiMain {
-    public status: Status
     // constructor(status: Status){
     // this.status = status
     // }

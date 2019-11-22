@@ -1,16 +1,13 @@
 import ReversiCanvas from './ReversiCanvas'
-import ResourceManager from '../ResourceManager/ResourceManager'
 import Editor from '../Editor/Editor'
 
 export default class ReversiEffect {
-    private rm: ResourceManager
     public editor: Editor = new Editor()
     // TODO: ReversiCanvasを引き剥がす
     public rc: ReversiCanvas
     //----------------------------------------
     //
-    constructor(rm: ResourceManager, rc: ReversiCanvas) {
-        this.rm = rm
+    constructor(rc: ReversiCanvas) {
         this.rc = rc
     }
     //
