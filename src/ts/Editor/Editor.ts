@@ -15,4 +15,11 @@ export default class Editor {
     public animAdd(name: string, func: Function): void {
         this.ea.add(name, func)
     }
+    //
+    /**
+     * animRemove
+     */
+    public animRemove (name: string):  void {
+        this.ea.remove(name)
+    }
 }

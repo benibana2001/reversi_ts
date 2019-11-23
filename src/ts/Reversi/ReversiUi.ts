@@ -4,6 +4,8 @@ import ReversiEffect from './ReversiEffect'
 export default class ReversiUi {
     public rcanvas: ReversiCanvas
     public reffect: ReversiEffect
+    // Function Related UI. Generally Assuming Is Like A Button Function Which Added By addEventlistner().
+    public uiFuncs: {[key: string]: (e: MouseEvent) => any} = {}
     //----------------------------------------
     constructor(rcanvas: ReversiCanvas, reffect: ReversiEffect) {
         this.rcanvas = rcanvas
@@ -43,11 +45,40 @@ export default class ReversiUi {
             context.restore()
         })
 
+        let functionClick = (e: MouseEvent) => {
+            if (this.reffect.editor.egb.inRange(e.offsetX * scale, e.offsetY * scale, x, y, w, h)) {
+                cb()
+            }
+        }
+        //
+        let functionMouseMove = (e: MouseEvent) => {
+            isHover = this.reffect.editor.egb.inRange(e.offsetX * scale, e.offsetY * scale, x, y, w, h)
+        }
+        //
+        let functionMouseLeave = () => {
+            isHover = false
+        }
+        //
+        this.rcanvas.canvas.canvas.addEventListener('click', functionClick)
+        this.rcanvas.canvas.canvas.addEventListener('mouseleave', functionMouseLeave)
+        this.rcanvas.canvas.canvas.addEventListener('mousemove', functionMouseMove)
+        // Add Function To Object for Which Can Remove.
+        this.uiFuncs[name + ':click'] = functionClick
+        this.uiFuncs[name + ':mouseleave'] = functionMouseLeave
+        this.uiFuncs[name + ':mousemove'] = functionMouseMove
     }
     /**
      * removeButton
      */
     public removeButton(name: string): void {
-
+        this.reffect.animRemove(name)
+        //
+        this.rcanvas.canvas.canvas.removeEventListener('click', this.uiFuncs[name + ':click'])
+        this.rcanvas.canvas.canvas.removeEventListener('mouseleave', this.uiFuncs[name + ':mouseleave'])
+        this.rcanvas.canvas.canvas.removeEventListener('mousemove', this.uiFuncs[name + ':mousemove'])
+        //
+        delete this.uiFuncs[name + ':click']
+        delete this.uiFuncs[name + ':mousemove']
+        delete this.uiFuncs[name + ':mouseleave']
     }
 }

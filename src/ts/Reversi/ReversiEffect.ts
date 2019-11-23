@@ -19,6 +19,10 @@ export default class ReversiEffect {
         this.editor.animAdd(name, func)
     }
     //
+    public animRemove(name: string) {
+        this.editor.animRemove(name)
+    }
+    //
     public async message (text: string): Promise<any> {
         let timeMax: number = 750
         let name: string = 'message'

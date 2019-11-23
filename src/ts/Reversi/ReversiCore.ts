@@ -9,7 +9,7 @@ import Base from './ReversiBase'
 export default class ReversiCore extends Base{
     public rc = new ReversiCanvas()
     public re = new ReversiEffect(this.rc)
-    public rui = new ReversiUi(this.rc)
+    public rui = new ReversiUi(this.rc, this.re)
     private isLock = false
     //----------------------------------------
     constructor(){
