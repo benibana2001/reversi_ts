@@ -57,4 +57,19 @@ export default class EditorCanvas {
             return newImage
         }
     }
+    /**
+     * pathArcRect
+     */
+    public pathArcRect (context: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r:number):  void {
+        let x2: number = x + w
+        let y2: number = y + h
+        // Draw Arc
+        context.beginPath()
+        context.moveTo(x + r, y)
+        context.arcTo(x2, y, x2, y2, r)
+        context.arcTo(x2, y2, x, y2, r)
+        context.arcTo(x, y2, x, y, r)
+        context.arcTo(x, y, x2, y, r)
+        context.closePath()
+    }
 }

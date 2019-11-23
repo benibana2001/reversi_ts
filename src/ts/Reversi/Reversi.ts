@@ -14,7 +14,7 @@ export default class Reversi {
         this.rcanvas = new ReversiCanvas()
         this.rcore = new ReversiCore()
         this.re = new ReversiEffect(this.rcanvas)
-        this.rui = new ReversiUi(this.rcanvas)
+        this.rui = new ReversiUi(this.rcanvas, this.re)
         this.rm = new ReversiMain()
     }
 }
