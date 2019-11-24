@@ -39,7 +39,8 @@ export default class ReversiUi {
             context.fillStyle = isHover ? '#fff' : '#000'
             context.textAlign = 'center'
             context.textBaseline = 'middle'
-            context.font = fontSize + 'px "' + this.rcanvas.layout.fontFamily + '"j'
+            context.font = fontSize + 'px ' + this.rcanvas.layout.fontFamily
+            // context.font = '60.3px ArchivoBlack'
             context.fillText(text, x + w * 0.5, y + h * 0.5, w - m * 2)
             //
             context.restore()
