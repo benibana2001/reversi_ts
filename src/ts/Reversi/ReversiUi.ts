@@ -5,7 +5,7 @@ export default class ReversiUi {
     public rcanvas: ReversiCanvas
     public reffect: ReversiEffect
     // Function Related UI. Generally Assuming Is Like A Button Function Which Added By addEventlistner().
-    public uiFuncs: {[key: string]: (e: MouseEvent) => any} = {}
+    public uiFuncs: { [key: string]: (e: MouseEvent) => any } = {}
     //----------------------------------------
     constructor(rcanvas: ReversiCanvas, reffect: ReversiEffect) {
         this.rcanvas = rcanvas
@@ -31,11 +31,15 @@ export default class ReversiUi {
         this.reffect.animAdd(name, () => {
             let context: CanvasRenderingContext2D = this.rcanvas.context
             context.save()
-            //
+            // Stroke Button's Outer Line
             context.fillStyle = isHover ? '#222' : '#000'
+            this.reffect.editor.ec.pathArcRect(context, x, y, w, h, m)
+            context.fill()
+            // Fill Button Color
+            context.fillStyle = isHover ? '#888' : '#fff'
             this.reffect.editor.ec.pathArcRect(context, x + 2, y + 2, w - 4, h - 4, m - 2)
-            context.fill
-            //
+            context.fill()
+            // Write Text Message
             context.fillStyle = isHover ? '#fff' : '#000'
             context.textAlign = 'center'
             context.textBaseline = 'middle'
